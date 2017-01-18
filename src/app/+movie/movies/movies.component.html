@@ -1,6 +1,13 @@
+<h2 class="title">Top Rated Movies</h2>
+<div class="movie-list">
+    <div class="item" *ngFor="let movie of topRatedList?.result">
+        <app-movie-card [movie]="movie"></app-movie-card>
+    </div>
+</div>
+
 <h2 class="title">Popular Movies</h2>
-<div class="popular-list">
-    <div class="item" *ngFor="let movie of (popularList$ | async)?.result">
+<div class="movie-list">
+    <div class="item" *ngFor="let movie of popularList?.result">
         <app-movie-card [movie]="movie"></app-movie-card>
     </div>
 </div>

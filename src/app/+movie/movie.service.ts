@@ -40,6 +40,28 @@ export class MovieService {
             });
     }
 
+    /* Get Top Rated Movies */
+    getTopRatedMovies(): Observable<PaginatedResult<IMovie[]>> {
+        let search = new URLSearchParams();
+        search.set('api_key', this.apikey);
+
+        let paginatedResult: PaginatedResult<IMovie[]> = new PaginatedResult<IMovie[]>();
+
+        return this.http.get('https://api.themoviedb.org/3/movie/top_rated', {search})
+            .map(( res: Response ) => {
+                let value = res.json();
+                paginatedResult.result = value.results;
+                paginatedResult.pagination = {
+                    CurrentPage: value.page,
+                    ItemsPerPage: paginatedResult.result.length,
+                    TotalItems: value.total_results,
+                    TotalPages: value.total_pages
+                };
+
+                return paginatedResult;
+            });
+    }
+
     /* Get Movie Genres */
     getGenres(): Observable<IGenre[]> {
         let search = new URLSearchParams();
@@ -51,11 +73,4 @@ export class MovieService {
             });
     }
 
-    /*
-     * Extract data from server response
-     * */
-    private extractData( res: Response ) {
-        let value = res.json();
-        return value || {};
-    }
 }

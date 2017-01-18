@@ -10,9 +10,10 @@
   padding: 0 .5rem;
 }
 
-.popular-list {
+.movie-list {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: $base-line-height;
 }
 
 .item {
