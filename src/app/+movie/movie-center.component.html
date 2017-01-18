@@ -1,0 +1,11 @@
+<div class="movie-center">
+    <div class="left-panel">
+        <nav class="nav-genres">
+            <ul class="genre-list">
+                <li class="genre-cell" *ngFor="let genre of genres$ | async">
+                    {{genre.name}}
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -99,4 +99,4 @@ $breakpoints: (
         'large': (min-width: 1200px),
 ) !default;
 
-$header-height: 7vh;
+$header-height: $base-line-height * 3;

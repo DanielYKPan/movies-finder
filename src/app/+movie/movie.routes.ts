@@ -2,13 +2,13 @@
  * movie.routes
  */
 
-import { MovieComponent } from './movie.component';
+import { MovieCenterComponent } from './movie-center.component';
 
 export const routes = [
     {
         path: '',
         children: [
-            {path: '', component: MovieComponent},
+            {path: '', component: MovieCenterComponent},
         ]
     },
 ];

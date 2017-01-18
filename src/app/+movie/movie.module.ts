@@ -2,24 +2,22 @@
  * movie.module
  */
 
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { routes } from './movie.routes';
-import { MovieComponent } from './movie.component';
+import { MovieCenterComponent } from './movie-center.component';
 import { HttpModule } from "@angular/http";
 import { MovieService } from "./movie.service";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
     declarations: [
         // Components / Directives/ Pipes
-        MovieComponent,
+        MovieCenterComponent,
     ],
     imports: [
-        CommonModule,
-        FormsModule,
+        SharedModule,
         HttpModule,
         RouterModule.forChild(routes),
     ],

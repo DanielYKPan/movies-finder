@@ -1,0 +1,39 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/functions';
+@import '../../../styles/utils/mixins';
+
+$header-bg-color: #df691a;
+
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: $white;
+  height: $header-height;
+  background-color: $header-bg-color;
+}
+
+.container {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.banner {
+  display: flex;
+  position: relative;
+  height: 100%;
+}
+
+.brand-wrap {
+  @include type-setting(2);
+
+  padding: $base-line-height/2 .5rem;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.icon {
+  margin-right: .5rem;
+}
