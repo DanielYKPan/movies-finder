@@ -1,1 +1,18 @@
-<div>Movie Details</div>
+<div class="row details">
+    <div class="details-left-panel">
+        <img class="thumbnail" src="https://image.tmdb.org/t/p/w500/{{movie?.poster_path}}">
+        <a class="btn btn-info homepage-btn">Visit Movie Website</a>
+    </div>
+    <div class="details-right-panel">
+        <h2 class="movie-title">
+            {{movie?.title}}
+            <small class="label vote-label">{{movie?.vote_average}}<i class="icon icon-star"></i></small>
+        </h2>
+        <p>{{movie?.tagline}}</p>
+        <p>
+            <a class="label genre-label" *ngFor="let genre of movie?.genres">{{genre.name}}</a>
+        </p>
+        <h3>Overview</h3>
+        <p>{{movie?.overview}}</p>
+    </div>
+</div>
