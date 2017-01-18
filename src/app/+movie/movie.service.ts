@@ -19,68 +19,21 @@ export class MovieService {
 
     /* Get Popular Movie List */
     getPopular(): Observable<PaginatedResult<IMovie[]>> {
-        let search = new URLSearchParams();
-        search.set('sort_by', 'popularity.desc');
-        search.set('api_key', this.apikey);
-
-        let paginatedResult: PaginatedResult<IMovie[]> = new PaginatedResult<IMovie[]>();
-
-        return this.http.get('https://api.themoviedb.org/3/discover/movie', {search})
-            .map(( res: Response ) => {
-                let value = res.json();
-                paginatedResult.result = value.results;
-                paginatedResult.pagination = {
-                    CurrentPage: value.page,
-                    ItemsPerPage: paginatedResult.result.length,
-                    TotalItems: value.total_results,
-                    TotalPages: value.total_pages
-                };
-
-                return paginatedResult;
-            });
+        let url = 'https://api.themoviedb.org/3/discover/movie';
+        let queries = [{name: 'sort_by', value: 'popularity.desc'}];
+        return this.getMovies(url, queries);
     }
 
     /* Get Top Rated Movies */
     getTopRatedMovies(): Observable<PaginatedResult<IMovie[]>> {
-        let search = new URLSearchParams();
-        search.set('api_key', this.apikey);
-
-        let paginatedResult: PaginatedResult<IMovie[]> = new PaginatedResult<IMovie[]>();
-
-        return this.http.get('https://api.themoviedb.org/3/movie/top_rated', {search})
-            .map(( res: Response ) => {
-                let value = res.json();
-                paginatedResult.result = value.results;
-                paginatedResult.pagination = {
-                    CurrentPage: value.page,
-                    ItemsPerPage: paginatedResult.result.length,
-                    TotalItems: value.total_results,
-                    TotalPages: value.total_pages
-                };
-
-                return paginatedResult;
-            });
+        let url = 'https://api.themoviedb.org/3/movie/top_rated';
+        return this.getMovies(url);
     }
 
+    /* Get Movies By Genre */
     getMoviesByGenre( id: string ) {
-        let search = new URLSearchParams();
-        search.set('api_key', this.apikey);
-
-        let paginatedResult: PaginatedResult<IMovie[]> = new PaginatedResult<IMovie[]>();
-
-        return this.http.get('https://api.themoviedb.org/3/genre/'+ id + '/movies', {search})
-            .map(( res: Response ) => {
-                let value = res.json();
-                paginatedResult.result = value.results;
-                paginatedResult.pagination = {
-                    CurrentPage: value.page,
-                    ItemsPerPage: paginatedResult.result.length,
-                    TotalItems: value.total_results,
-                    TotalPages: value.total_pages
-                };
-
-                return paginatedResult;
-            });
+        let url = 'https://api.themoviedb.org/3/genre/' + id + '/movies';
+        return this.getMovies(url);
     }
 
     /* Get Movie Genres */
@@ -94,4 +47,29 @@ export class MovieService {
             });
     }
 
+    private getMovies( url: string, queries?: Array<{name: string, value: string}> ): Observable<PaginatedResult<IMovie[]>> {
+        let search = new URLSearchParams();
+        search.set('api_key', this.apikey);
+
+        if (queries) {
+            for (let query of queries) {
+                search.set(query.name, query.value);
+            }
+        }
+
+        let paginatedResult: PaginatedResult<IMovie[]> = new PaginatedResult<IMovie[]>();
+        return this.http.get(url, {search})
+            .map(( res: Response ) => {
+                let value = res.json();
+                paginatedResult.result = value.results;
+                paginatedResult.pagination = {
+                    CurrentPage: value.page,
+                    ItemsPerPage: paginatedResult.result.length,
+                    TotalItems: value.total_results,
+                    TotalPages: value.total_pages
+                };
+
+                return paginatedResult;
+            });
+    }
 }
