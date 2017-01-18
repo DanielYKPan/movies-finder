@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Response } from "@angular/http";
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs";
-import { IGenre, PaginatedResult, IMovie } from "./model";
+import { IGenre, PaginatedResult, IMovie, IMovieDetails } from "./model";
 
 @Injectable()
 export class MovieService {
@@ -44,6 +44,16 @@ export class MovieService {
             .map(( res: Response ) => {
                 let value = res.json();
                 return value.genres;
+            });
+    }
+
+    /* Get Movie Details */
+    getMovie( id: string ): Observable<IMovieDetails> {
+        let search = new URLSearchParams();
+        search.set('api_key', this.apikey);
+        return this.http.get('https://api.themoviedb.org/3/movie/' + id, {search})
+            .map(( res: Response ) => {
+                return res.json();
             });
     }
 
