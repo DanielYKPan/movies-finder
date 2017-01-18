@@ -1,0 +1,6 @@
+<h2 class="title">Popular Movies</h2>
+<div class="popular-list">
+    <div class="item" *ngFor="let movie of (popularList$ | async)?.result">
+        <app-movie-card [movie]="movie"></app-movie-card>
+    </div>
+</div>
