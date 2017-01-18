@@ -2,7 +2,10 @@
     <div class="left-panel">
         <nav class="nav-genres">
             <ul class="genre-list">
-                <li class="genre-cell" *ngFor="let genre of genres$ | async">
+                <li class="genre-cell"
+                    *ngFor="let genre of genres$ | async"
+                    [routerLink]="['./genres/', genre.id, genre.name]"
+                    routerLinkActive="active">
                     {{genre.name}}
                 </li>
             </ul>

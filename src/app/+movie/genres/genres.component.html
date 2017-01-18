@@ -1,0 +1,6 @@
+<h2 class="title">{{title}}</h2>
+<div class="movie-list">
+    <div class="item" *ngFor="let movie of movies?.result">
+        <app-movie-card [movie]="movie"></app-movie-card>
+    </div>
+</div>
