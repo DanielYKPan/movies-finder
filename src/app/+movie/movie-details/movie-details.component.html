@@ -14,5 +14,18 @@
         </p>
         <h3>Overview</h3>
         <p>{{movie?.overview}}</p>
+        <div class="cast-row" *ngIf="cast">
+            <h3>Cast</h3>
+            <ul class="cast-list">
+                <li class="cast-cell" *ngFor="let actor of cast">
+                    <div class="thumbnail">
+                        <img src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}">
+                        <div class="cast-caption">
+                            <h5><a class="actor">{{actor.name}}</a></h5>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

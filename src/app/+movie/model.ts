@@ -2,6 +2,30 @@
  * model
  */
 
+export interface ICast {
+    cast_id: number;
+    character: string;
+    credit_id: string;
+    id: number;
+    name: string;
+    order: number;
+    profile_path: string;
+}
+
+export interface ICrew {
+    credit_id: string;
+    department: string;
+    id: number;
+    job: string;
+    name: string;
+    profile_path: string;
+}
+
+export interface ICredits {
+    id: number;
+    cast: Array<ICast>;
+    crew: Array<ICrew>;
+}
 
 export interface IGenre {
     id: number;
