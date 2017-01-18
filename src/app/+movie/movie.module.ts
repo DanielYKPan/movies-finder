@@ -9,6 +9,8 @@ import { RouterModule } from '@angular/router';
 
 import { routes } from './movie.routes';
 import { MovieComponent } from './movie.component';
+import { HttpModule } from "@angular/http";
+import { MovieService } from "./movie.service";
 
 @NgModule({
     declarations: [
@@ -18,8 +20,12 @@ import { MovieComponent } from './movie.component';
     imports: [
         CommonModule,
         FormsModule,
+        HttpModule,
         RouterModule.forChild(routes),
     ],
+    providers: [
+        MovieService
+    ]
 })
 export class MovieModule {
     public static routes = routes;

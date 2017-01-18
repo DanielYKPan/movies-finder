@@ -1,8 +1,0 @@
-@import '../../styles/utils/variables';
-@import '../../styles/utils/functions';
-@import '../../styles/utils/mixins';
-
-.home-header {
-  @include type-setting(3);
-  margin: 0;
-}
