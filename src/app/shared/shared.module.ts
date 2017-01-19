@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MovieCardComponent } from "./movie-card";
+import { HttpModule } from "@angular/http";
 
 @NgModule({
     declarations: [
@@ -15,6 +16,7 @@ import { MovieCardComponent } from "./movie-card";
     ],
     imports: [
         CommonModule,
+        HttpModule,
         RouterModule,
         FormsModule,
     ],

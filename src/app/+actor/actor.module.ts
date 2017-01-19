@@ -3,7 +3,6 @@
  */
 
 import { NgModule } from "@angular/core";
-import { HttpModule } from "@angular/http";
 import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared";
 import { routes } from './actor.routes';
@@ -22,7 +21,6 @@ import { ActorsComponent } from "./actors";
     ],
     imports: [
         SharedModule,
-        HttpModule,
         RouterModule.forChild(routes),
     ],
     providers: [

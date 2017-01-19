@@ -34,6 +34,7 @@ import { SharedModule } from "./shared";
  * Core Module
  * */
 import { CoreModule } from "./core";
+import { HomeComponent } from "./home/home.component";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -53,6 +54,7 @@ type StoreType = {
     bootstrap: [AppComponent],
     declarations: [
         AppComponent,
+        HomeComponent,
         NoContentComponent,
     ],
     imports: [ // import Angular's modules

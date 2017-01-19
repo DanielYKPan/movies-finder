@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 
 import { routes } from './movie.routes';
 import { MovieCenterComponent } from './movie-center.component';
-import { HttpModule } from "@angular/http";
 import { MovieService } from "./movie.service";
 import { SharedModule } from "../shared";
 import { MoviesComponent } from "./movies";
@@ -25,7 +24,6 @@ import { MovieDetailsComponent, FeaturedSliderComponent } from "./movie-details"
     ],
     imports: [
         SharedModule,
-        HttpModule,
         RouterModule.forChild(routes),
     ],
     providers: [
