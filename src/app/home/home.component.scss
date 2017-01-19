@@ -2,14 +2,24 @@
 @import '../../styles/utils/functions';
 @import '../../styles/utils/mixins';
 
+h3 {
+  @include type-setting(2);
+  margin: 0;
+}
+
 .home {
   width: 100%;
   height: calc(100vh - #{$header-height});
   background-color: $brand-color;
+  overflow-y: scroll;
 }
 
 .home-wrapper {
   color: $white;
   width: 80%;
   margin: 0 auto;
+}
+
+.row {
+  margin-bottom: $base-line-height;
 }

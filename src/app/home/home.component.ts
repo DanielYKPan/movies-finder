@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             .subscribe(
                 res => {
                     this.moviesUpComing = res[0].result;
-                    this.moviesNowPlaying = res[0].result;
+                    this.moviesNowPlaying = res[1].result;
                 }
             );
     }

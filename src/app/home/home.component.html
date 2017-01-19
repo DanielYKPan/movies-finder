@@ -1,5 +1,13 @@
 <div class="home">
     <div class="home-wrapper">
+        <div class="row now-playing">
+            <h3>Now In Theaters</h3>
+            <app-featured-slider [movies]="moviesNowPlaying"></app-featured-slider>
+        </div>
 
+        <div class="row up-coming">
+            <h3>Up Coming Movies</h3>
+            <app-featured-slider [movies]="moviesUpComing"></app-featured-slider>
+        </div>
     </div>
 </div>
