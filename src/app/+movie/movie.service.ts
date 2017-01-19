@@ -105,13 +105,19 @@ export class MovieService extends BaseService {
     /* Get a list of upcoming movies in theatres. */
     getUpComingMovies(): Observable<PaginatedResult<IMovie[]>> {
         let url = 'https://api.themoviedb.org/3/movie/upcoming';
-        return this.getMovies(url);
+        let queries = [
+            {name: 'region', value: 'US'},
+        ];
+        return this.getMovies(url, queries);
     }
 
     /* Get a list of movies in theatres */
     getNowPlayingMovies(): Observable<PaginatedResult<IMovie[]>> {
         let url = 'https://api.themoviedb.org/3/movie/now_playing';
-        return this.getMovies(url);
+        let queries = [
+            {name: 'region', value: 'US'},
+        ];
+        return this.getMovies(url, queries);
     }
 
     private getMovies( url: string, queries?: Array<{name: string, value: string}> ): Observable<PaginatedResult<IMovie[]>> {
