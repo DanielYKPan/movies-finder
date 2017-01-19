@@ -21,7 +21,7 @@
                     <div class="thumbnail">
                         <img src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}">
                         <div class="cast-caption">
-                            <h5><a class="actor">{{actor.name}}</a></h5>
+                            <h5><a class="actor" [routerLink]="['/actors', actor.id]">{{actor.name}}</a></h5>
                         </div>
                     </div>
                 </li>
