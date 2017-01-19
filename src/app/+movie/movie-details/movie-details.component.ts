@@ -7,7 +7,7 @@ import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MovieService } from "../movie.service";
 import { Subscription, Observable } from "rxjs";
-import { IMovieDetails, ICast, IVideo, IMovie } from "../model";
+import { IMovieDetails, ICast, IVideo, IMovie, IReview } from "../model";
 import 'rxjs/add/observable/forkJoin';
 
 @Component({
@@ -22,6 +22,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     cast: Array<ICast>;
     video: IVideo;
     similarMovies: Array<IMovie>;
+    movieReviews: Array<IReview>;
     private getMovieSub: Subscription;
     private routerEventsSub: Subscription;
 
@@ -48,7 +49,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
                 let movie_credits$ = this.movieService.getMovieCredits(movie_id);
                 let movie_videos$ = this.movieService.getMovieVideos(movie_id);
                 let movie_similar$ = this.movieService.getSimilarMovies(movie_id);
-                return Observable.forkJoin([movie$, movie_credits$, movie_videos$, movie_similar$]);
+                let movie_reviews$ = this.movieService.getMovieReviews(movie_id);
+                return Observable.forkJoin([movie$, movie_credits$, movie_videos$, movie_similar$, movie_reviews$]);
             })
             .subscribe(
                 res => {
@@ -59,6 +61,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
                         this.video.url = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.video.key)
                     }
                     this.similarMovies = res[3].result;
+                    this.movieReviews = res[4].result;
                 }
             );
     }

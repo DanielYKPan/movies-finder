@@ -185,3 +185,37 @@ img.thumbnail {
     margin-bottom: $base-line-height;
   }
 }
+
+.review-list {
+
+  width: 100%;
+
+  .review {
+    width: 50%;
+    float: left;
+    padding: 0 1rem;
+  }
+
+  blockquote {
+    @include type-setting(0);
+    padding: $base-line-height/2 1rem;
+    margin: 0 0 1rem;
+    border-left: .5rem solid #4e5d6c;
+  }
+
+  .review-content {
+    text-align: justify;
+  }
+
+  footer:before {
+    content: '\2014 \00A0';
+  }
+
+  a {
+    color: #df691a;
+
+    &:hover {
+      color: #e67b17;
+    }
+  }
+}

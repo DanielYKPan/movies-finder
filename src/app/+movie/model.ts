@@ -117,7 +117,7 @@ export interface IMovieVideos {
     results: Array<IVideo>
 }
 
-export interface  IVideo {
+export interface IVideo {
     id: string;
     iso_639_1: string;
     iso_3166_1: string;
@@ -127,4 +127,11 @@ export interface  IVideo {
     size: number;
     type: string;
     url: SafeResourceUrl;
+}
+
+export interface IReview {
+    author: string;
+    content: string;
+    id: string;
+    url: string;
 }

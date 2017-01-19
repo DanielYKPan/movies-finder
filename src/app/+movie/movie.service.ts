@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Response } from "@angular/http";
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs";
-import { IGenre, PaginatedResult, IMovie, IMovieDetails, ICredits, IMovieVideos } from "./model";
+import { IGenre, PaginatedResult, IMovie, IMovieDetails, ICredits, IMovieVideos, IReview } from "./model";
 
 @Injectable()
 export class MovieService {
@@ -77,8 +77,28 @@ export class MovieService {
             });
     }
 
+    /* Get the user reviews for a movie. */
+    getMovieReviews(id: string): Observable<PaginatedResult<IReview[]>> {
+        let search = new URLSearchParams();
+        search.set('api_key', this.apikey);
+        let paginatedResult: PaginatedResult<IReview[]> = new PaginatedResult<IReview[]>();
+        return this.http.get('https://api.themoviedb.org/3/movie/' + id + '/reviews', {search})
+            .map(( res: Response ) => {
+                let value = res.json();
+                paginatedResult.result = value.results;
+                paginatedResult.pagination = {
+                    CurrentPage: value.page,
+                    ItemsPerPage: paginatedResult.result.length,
+                    TotalItems: value.total_results,
+                    TotalPages: value.total_pages
+                };
+
+                return paginatedResult;
+            });
+    }
+
     /* Get a list of similar movies */
-    getSimilarMovies( id: string ): Observable<any> {
+    getSimilarMovies( id: string ): Observable<PaginatedResult<IMovie[]>> {
         let url = 'https://api.themoviedb.org/3/movie/' + id + '/similar';
         return this.getMovies(url);
     }

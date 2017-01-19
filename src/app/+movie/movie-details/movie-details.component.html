@@ -1,19 +1,19 @@
-<div class="row details">
+<div class="row details" *ngIf="movie">
     <div class="details-left-panel">
-        <img class="thumbnail" src="https://image.tmdb.org/t/p/w500/{{movie?.poster_path}}">
-        <a class="btn btn-info homepage-btn">Visit Movie Website</a>
+        <img class="thumbnail" src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
+        <a class="btn btn-info homepage-btn" [href]="movie.homepage">Visit Movie Website</a>
     </div>
     <div class="details-right-panel">
         <h2 class="movie-title">
-            {{movie?.title}}
+            {{movie.title}}
         </h2>
-        <p>{{movie?.tagline}}</p>
+        <p>{{movie.tagline}}</p>
         <p>
-            <a class="label genre-label" *ngFor="let genre of movie?.genres">{{genre.name}}</a>
-            <small class="label vote-label">{{movie?.vote_average}}<i class="icon icon-star"></i></small>
+            <a class="label genre-label" *ngFor="let genre of movie.genres" [routerLink]="['../genres/', genre.id, genre.name]">{{genre.name}}</a>
+            <small class="label vote-label">{{movie.vote_average}}<i class="icon icon-star"></i></small>
         </p>
         <h3>Overview</h3>
-        <p>{{movie?.overview}}</p>
+        <p>{{movie.overview}}</p>
         <div class="cast-row" *ngIf="cast">
             <h3>Cast</h3>
             <ul class="cast-list">
@@ -40,4 +40,16 @@
 <div class="row similar-movies" *ngIf="similarMovies && similarMovies.length > 0">
     <h3>Similar Movies</h3>
     <app-featured-slider [movies]="similarMovies"></app-featured-slider>
+</div>
+
+<div class="row movie-reviews" *ngIf="movieReviews && movieReviews.length > 0">
+    <h3>Reviews</h3>
+    <div class="review-list">
+        <div class="review" *ngFor="let review of movieReviews">
+            <blockquote>
+                <p class="review-content">{{review.content}}</p>
+                <footer><cite title="{{review.author}}"><a [href]="review.url" target="_blank">{{review.author}}</a></cite></footer>
+            </blockquote>
+        </div>
+    </div>
 </div>
