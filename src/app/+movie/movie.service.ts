@@ -67,6 +67,16 @@ export class MovieService {
             });
     }
 
+    /* Get the videos that have been added to a movie.  */
+    getMovieVideos(id: string): Observable<any> {
+        let search = new URLSearchParams();
+        search.set('api_key', this.apikey);
+        return this.http.get('https://api.themoviedb.org/3/movie/' + id + '/videos', {search})
+            .map(( res: Response ) => {
+                return res.json();
+            });
+    }
+
     private getMovies( url: string, queries?: Array<{name: string, value: string}> ): Observable<PaginatedResult<IMovie[]>> {
         let search = new URLSearchParams();
         search.set('api_key', this.apikey);

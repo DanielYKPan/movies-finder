@@ -1,6 +1,7 @@
 /**
  * model
  */
+import { SafeResourceUrl } from "@angular/platform-browser";
 
 export interface ICast {
     cast_id: number;
@@ -109,4 +110,21 @@ export interface IPagination {
 export class PaginatedResult<T> {
     result: T;
     pagination: IPagination;
+}
+
+export interface IMovieVideos {
+    id: number;
+    results: Array<IVideo>
+}
+
+export interface  IVideo {
+    id: string;
+    iso_639_1: string;
+    iso_3166_1: string;
+    key: string;
+    name: string;
+    site: string;
+    size: number;
+    type: string;
+    url: SafeResourceUrl;
 }
