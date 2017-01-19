@@ -1,12 +1,24 @@
 <div class="home">
     <div class="home-wrapper">
+
+        <div class="row featured-movie" *ngIf="featuredMovie && featuredVideo">
+            <div class="left-panel">
+                <app-movie-card [movie]="featuredMovie"></app-movie-card>
+            </div>
+            <div class="right-panel">
+                <div class="embed-responsive embed-responsive-16by9 video-embed">
+                    <iframe class="embed-responsive-item" [src]="featuredVideo.url"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <h3>Now In Theaters</h3>
         <div class="row now-playing">
-            <h3>Now In Theaters</h3>
             <app-featured-slider [movies]="moviesNowPlaying"></app-featured-slider>
         </div>
 
+        <h3>Up Coming Movies</h3>
         <div class="row up-coming">
-            <h3>Up Coming Movies</h3>
             <app-featured-slider [movies]="moviesUpComing"></app-featured-slider>
         </div>
     </div>
