@@ -37,17 +37,22 @@ export interface ICollection {
 }
 
 export interface ICrew {
+    adult: boolean;
     credit_id: string;
     department: string;
     id: number;
     job: string;
     name: string;
+    original_title: string;
+    poster_path: string;
     profile_path: string;
+    release_date: string;
+    title: string;
 }
 
 export interface ICredits {
     id: number;
-    cast: Array<ICast>;
+    cast: Array<ICast|IMovie>;
     crew: Array<ICrew>;
 }
 

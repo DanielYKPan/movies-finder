@@ -5,8 +5,8 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActorService } from "../actor.service";
 import { ActivatedRoute, Params } from "@angular/router";
-import { Subscription } from "rxjs";
-import { IActor } from "../../model";
+import { Subscription, Observable } from "rxjs";
+import { IActor, IMovie } from "../../model";
 
 @Component({
     selector: 'app-actor-details',
@@ -17,6 +17,7 @@ import { IActor } from "../../model";
 export class ActorDetailsComponent implements OnInit, OnDestroy {
 
     actor: IActor;
+    movies: Array<IMovie>;
     private getActorSub: Subscription;
 
     constructor( private route: ActivatedRoute,
@@ -27,11 +28,14 @@ export class ActorDetailsComponent implements OnInit, OnDestroy {
         this.getActorSub = this.route.params
             .switchMap(( params: Params ) => {
                 let actor_id = params['id'];
-                return this.actorService.getActorDetails(actor_id);
+                let actor$ = this.actorService.getActorDetails(actor_id);
+                let actor_movie_credits$ = this.actorService.getActorMovieCredits(actor_id);
+                return Observable.forkJoin([actor$, actor_movie_credits$]);
             })
             .subscribe(
                 res => {
-                    this.actor = res;
+                    this.actor = res[0];
+                    this.movies = res[1].cast;
                 }
             );
     }

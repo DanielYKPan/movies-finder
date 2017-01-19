@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from "../base.service";
 import { Http, URLSearchParams, Response } from "@angular/http";
 import { Observable } from "rxjs";
-import { IActor } from "../model";
+import { IActor, ICredits } from "../model";
 
 @Injectable()
 export class ActorService extends BaseService {
@@ -20,6 +20,16 @@ export class ActorService extends BaseService {
         let search = new URLSearchParams();
         search.set('api_key', this.apikey);
         return this.http.get('https://api.themoviedb.org/3/person/' + id, {search})
+            .map(( res: Response ) => {
+                return res.json();
+            });
+    }
+
+    /* Get the movie credits for a person */
+    getActorMovieCredits(id: string): Observable<ICredits> {
+        let search = new URLSearchParams();
+        search.set('api_key', this.apikey);
+        return this.http.get('https://api.themoviedb.org/3/person/' + id + '/movie_credits', {search})
             .map(( res: Response ) => {
                 return res.json();
             });
