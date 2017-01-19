@@ -8,11 +8,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MovieCardComponent } from "./movie-card";
 import { HttpModule } from "@angular/http";
+import { FeaturedSliderComponent } from "./featured-slider";
 
 @NgModule({
     declarations: [
         // Components / Directives/ Pipes
         MovieCardComponent,
+        FeaturedSliderComponent,
     ],
     imports: [
         CommonModule,
@@ -27,6 +29,7 @@ import { HttpModule } from "@angular/http";
         RouterModule,
         FormsModule,
         MovieCardComponent,
+        FeaturedSliderComponent,
     ]
 })
 export class SharedModule {

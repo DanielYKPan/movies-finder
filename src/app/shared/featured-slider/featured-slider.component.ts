@@ -1,9 +1,9 @@
 /**
- * featured-sider.component
+ * featured-slider.component
  */
 
 import {
-    Component, OnInit, ViewChild, ElementRef, QueryList, ViewChildren, AfterViewInit,
+    Component, OnInit, ViewChild, ElementRef, QueryList, ViewChildren,
     Renderer, Input, AfterViewChecked
 } from "@angular/core";
 import { IMovie } from "../../model";

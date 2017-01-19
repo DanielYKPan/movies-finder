@@ -11,7 +11,7 @@ import { MovieService } from "./movie.service";
 import { SharedModule } from "../shared";
 import { MoviesComponent } from "./movies";
 import { GenresComponent } from "./genres";
-import { MovieDetailsComponent, FeaturedSliderComponent } from "./movie-details";
+import { MovieDetailsComponent } from "./movie-details";
 
 @NgModule({
     declarations: [
@@ -20,7 +20,6 @@ import { MovieDetailsComponent, FeaturedSliderComponent } from "./movie-details"
         MoviesComponent,
         GenresComponent,
         MovieDetailsComponent,
-        FeaturedSliderComponent,
     ],
     imports: [
         SharedModule,
