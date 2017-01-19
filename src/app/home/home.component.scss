@@ -1,0 +1,15 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/functions';
+@import '../../styles/utils/mixins';
+
+.home {
+  width: 100%;
+  height: calc(100vh - #{$header-height});
+  background-color: $brand-color;
+}
+
+.home-wrapper {
+  color: $white;
+  width: 80%;
+  margin: 0 auto;
+}
