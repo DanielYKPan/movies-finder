@@ -1,0 +1,15 @@
+<div class="featured-slider">
+    <div #featuredList class="featured-list">
+        <div #featuredTrack class="featured-track">
+            <div #card class="card" *ngFor="let movie of movies">
+                <app-movie-card [movie]="movie"></app-movie-card>
+            </div>
+        </div>
+    </div>
+    <div class="featured-btn left-btn" (click)="clickLeft()">
+        <i class="icon icon-left-open"></i>
+    </div>
+    <div class="featured-btn right-btn" (click)="clickRight()">
+        <i class="icon icon-right-open"></i>
+    </div>
+</div>

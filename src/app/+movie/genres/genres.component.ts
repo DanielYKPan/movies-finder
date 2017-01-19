@@ -3,7 +3,7 @@
  */
 
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
 import { Subscription } from "rxjs";
 import { PaginatedResult, IMovie } from "../model";
 import { MovieService } from "../movie.service";
@@ -21,12 +21,23 @@ export class GenresComponent implements OnInit, OnDestroy {
     movies: PaginatedResult<IMovie[]>;
 
     private getMoviesSub: Subscription;
+    private routerEventsSub: Subscription;
 
     constructor( private route: ActivatedRoute,
+                 private router: Router,
                  private movieService: MovieService ) {
     }
 
     ngOnInit(): void {
+
+        // work around: Changing route doesn't scroll to top in the new page #7791
+        this.routerEventsSub = this.router.events
+            .filter(event => event instanceof NavigationEnd)
+            .subscribe(( event ) => {
+                //window.scrollTo(0, 0);
+                document.body.scrollTop = 0;
+            });
+
         this.getMoviesSub = this.route.params
             .switchMap(( params: Params ) => {
                 this.title = params['name'];
@@ -38,5 +49,8 @@ export class GenresComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         if (this.getMoviesSub)
             this.getMoviesSub.unsubscribe();
+
+        if (this.routerEventsSub)
+            this.routerEventsSub.unsubscribe();
     }
 }

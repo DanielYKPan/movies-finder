@@ -13,7 +13,7 @@ import { SharedModule } from "../shared";
 import { MoviesComponent } from "./movies";
 import { MovieCardComponent } from "./movie-card";
 import { GenresComponent } from "./genres";
-import { MovieDetailsComponent } from "./movie-details";
+import { MovieDetailsComponent, FeaturedSliderComponent } from "./movie-details";
 
 @NgModule({
     declarations: [
@@ -23,6 +23,7 @@ import { MovieDetailsComponent } from "./movie-details";
         MovieCardComponent,
         GenresComponent,
         MovieDetailsComponent,
+        FeaturedSliderComponent,
     ],
     imports: [
         SharedModule,

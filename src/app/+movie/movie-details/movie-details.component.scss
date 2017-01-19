@@ -32,7 +32,6 @@ ul {
 }
 
 .row {
-  display: flex;
   margin-bottom: $base-line-height*2;
   padding: 0 .5rem;
 }
@@ -62,6 +61,10 @@ ul {
 
 .homepage-btn {
   @include type-setting(1);
+}
+
+.details {
+  display: flex;
 }
 
 .details-left-panel {
@@ -101,6 +104,9 @@ img.thumbnail {
 }
 
 .vote-label {
+  @include type-setting(2);
+  position: absolute;
+  right: 1rem;
   background-color: #f0ad4e;
 }
 
@@ -143,7 +149,7 @@ img.thumbnail {
 .videos {
   flex-wrap: wrap;
   width: 70%;
-  margin: 0 auto;
+  margin: 0 auto $base-line-height*2;
 }
 
 .video-name,
@@ -167,4 +173,15 @@ img.thumbnail {
 
 .embed-responsive-16by9 {
   padding-bottom: (9/16)*100%;
+}
+
+.similar-movie-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  .similar-movie-cell {
+    width: 20%;
+    padding: 0 .5rem;
+    margin-bottom: $base-line-height;
+  }
 }

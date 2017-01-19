@@ -6,11 +6,11 @@
     <div class="details-right-panel">
         <h2 class="movie-title">
             {{movie?.title}}
-            <small class="label vote-label">{{movie?.vote_average}}<i class="icon icon-star"></i></small>
         </h2>
         <p>{{movie?.tagline}}</p>
         <p>
             <a class="label genre-label" *ngFor="let genre of movie?.genres">{{genre.name}}</a>
+            <small class="label vote-label">{{movie?.vote_average}}<i class="icon icon-star"></i></small>
         </p>
         <h3>Overview</h3>
         <p>{{movie?.overview}}</p>
@@ -35,4 +35,9 @@
     <div class="embed-responsive embed-responsive-16by9 video-embed">
         <iframe class="embed-responsive-item" [src]="video.url"></iframe>
     </div>
+</div>
+
+<div class="row similar-movies" *ngIf="similarMovies && similarMovies.length > 0">
+    <h3>Similar Movies</h3>
+    <app-featured-slider [movies]="similarMovies"></app-featured-slider>
 </div>
