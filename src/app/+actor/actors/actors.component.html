@@ -1,0 +1,11 @@
+<h1>Popular Artists</h1>
+<div class="actor-list">
+    <div class="actor-cell" *ngFor="let actor of actors">
+        <div class="thumbnail">
+            <img src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}">
+            <div class="cast-caption">
+                <h5><a class="actor" [routerLink]="['/actors', actor.id]">{{actor.name}}</a></h5>
+            </div>
+        </div>
+    </div>
+</div>

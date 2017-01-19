@@ -1,0 +1,53 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/functions';
+@import '../../../styles/utils/mixins';
+
+:host {
+  color: $white;
+}
+
+h1 {
+  @include type-setting(3);
+  margin: 0;
+}
+
+h5 {
+  @include type-setting(1);
+  margin: 0;
+}
+
+.actor-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .actor-cell {
+    width: 20%;
+    padding: $base-line-height/2 .5rem;
+  }
+}
+
+.thumbnail {
+  background-color: hsl(194, 19%, 40%);
+  margin-bottom: $base-line-height;
+  padding: .2rem;
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .cast-caption {
+    text-align: center;
+    padding: $base-line-height/2 0;
+
+    .actor {
+      color: #df691a;
+
+      &:hover {
+        color: #e67b17;
+      }
+    }
+  }
+}

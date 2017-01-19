@@ -10,12 +10,14 @@ import { routes } from './actor.routes';
 import { ActorCenterComponent } from "./actor-center.component";
 import { ActorDetailsComponent } from "./actor-details";
 import { ActorService } from "./actor.service";
+import { ActorsComponent } from "./actors";
 
 
 @NgModule({
     declarations: [
         // Components / Directives/ Pipes
         ActorCenterComponent,
+        ActorsComponent,
         ActorDetailsComponent,
     ],
     imports: [
