@@ -3,6 +3,22 @@
  */
 import { SafeResourceUrl } from "@angular/platform-browser";
 
+export interface IActor {
+    adult: boolean;
+    also_known_as: Array<string>;
+    biography: string;
+    birthday: string;
+    deathday: string;
+    gender: number;
+    homepage: string;
+    id: number;
+    imdb_id: string;
+    name: string;
+    place_of_birth: string;
+    popularity: number;
+    profile_path: string;
+}
+
 export interface ICast {
     cast_id: number;
     character: string;
@@ -11,6 +27,13 @@ export interface ICast {
     name: string;
     order: number;
     profile_path: string;
+}
+
+export interface ICollection {
+    backdrop_path: string;
+    id: number;
+    name: string;
+    poster_path: string;
 }
 
 export interface ICrew {
@@ -78,26 +101,9 @@ export interface IMovieDetails {
     vote_count: number;
 }
 
-export interface ICollection {
-    backdrop_path: string;
+export interface IMovieVideos {
     id: number;
-    name: string;
-    poster_path: string;
-}
-
-export interface IProductionCompany {
-    id: number;
-    name: string;
-}
-
-export interface IProductionCountry {
-    iso_3166_1: string;
-    id: number;
-}
-
-export interface ISpokenLanguage {
-    iso_639_1: string;
-    id: number;
+    results: Array<IVideo>
 }
 
 export interface IPagination {
@@ -112,9 +118,26 @@ export class PaginatedResult<T> {
     pagination: IPagination;
 }
 
-export interface IMovieVideos {
+export interface IProductionCompany {
     id: number;
-    results: Array<IVideo>
+    name: string;
+}
+
+export interface IProductionCountry {
+    iso_3166_1: string;
+    id: number;
+}
+
+export interface IReview {
+    author: string;
+    content: string;
+    id: string;
+    url: string;
+}
+
+export interface ISpokenLanguage {
+    iso_639_1: string;
+    id: number;
 }
 
 export interface IVideo {
@@ -127,11 +150,4 @@ export interface IVideo {
     size: number;
     type: string;
     url: SafeResourceUrl;
-}
-
-export interface IReview {
-    author: string;
-    content: string;
-    id: string;
-    url: string;
 }

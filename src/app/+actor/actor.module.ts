@@ -8,7 +8,8 @@ import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared";
 import { routes } from './actor.routes';
 import { ActorCenterComponent } from "./actor-center.component";
-import { ActorDetailsComponent } from "./actor-details/actor-details.component";
+import { ActorDetailsComponent } from "./actor-details";
+import { ActorService } from "./actor.service";
 
 
 @NgModule({
@@ -22,7 +23,9 @@ import { ActorDetailsComponent } from "./actor-details/actor-details.component";
         HttpModule,
         RouterModule.forChild(routes),
     ],
-    providers: []
+    providers: [
+        ActorService
+    ]
 })
 export class ActorModule {
     public static routes = routes;
