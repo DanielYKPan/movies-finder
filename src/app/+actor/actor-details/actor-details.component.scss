@@ -105,3 +105,14 @@ img.thumbnail {
 .actor-biography {
   text-align: justify;
 }
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .movie-cell {
+    width: 20%;
+    padding: $base-line-height/2 .5rem;
+  }
+}

@@ -1,7 +1,7 @@
 <div class="row details" *ngIf="actor">
     <div class="details-left-panel">
         <img class="thumbnail" src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}">
-        <a class="btn btn-info homepage-btn" [href]="actor.homepage">Visit Actor Website</a>
+        <a *ngIf="actor.homepage" class="btn btn-info homepage-btn" [href]="actor.homepage">Visit Actor Website</a>
     </div>
     <div class="details-right-panel">
         <h2 class="actor-name">
@@ -12,5 +12,14 @@
         <p>Place of Birth: {{actor.place_of_birth}}</p>
         <h4>Biography</h4>
         <p class="actor-biography">{{actor.biography}}</p>
+    </div>
+</div>
+
+<div class="row movies" *ngIf="movies">
+    <h3>Movies</h3>
+    <div class="movie-list">
+        <div class="movie-cell" *ngFor="let movie of movies">
+            <app-movie-card [movie]="movie"></app-movie-card>
+        </div>
     </div>
 </div>
