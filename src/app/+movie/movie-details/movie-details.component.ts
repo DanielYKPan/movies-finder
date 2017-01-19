@@ -7,7 +7,7 @@ import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MovieService } from "../movie.service";
 import { Subscription, Observable } from "rxjs";
-import { IMovieDetails, ICast, IVideo, IMovie, IReview } from "../model";
+import { IMovieDetails, ICast, IVideo, IMovie, IReview } from "../../model";
 import 'rxjs/add/observable/forkJoin';
 
 @Component({

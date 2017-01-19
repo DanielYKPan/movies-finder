@@ -5,7 +5,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { MovieService } from "../movie.service";
 import { Observable, Subscription } from "rxjs";
-import { PaginatedResult, IMovie } from "../model";
+import { PaginatedResult, IMovie } from "../../model";
 import 'rxjs/add/observable/forkJoin';
 
 @Component({

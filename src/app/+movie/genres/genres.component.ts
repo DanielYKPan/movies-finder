@@ -5,7 +5,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
 import { Subscription } from "rxjs";
-import { PaginatedResult, IMovie } from "../model";
+import { PaginatedResult, IMovie } from "../../model";
 import { MovieService } from "../movie.service";
 import 'rxjs/add/operator/switchMap';
 

@@ -6,7 +6,7 @@ import {
     Component, OnInit, ViewChild, ElementRef, QueryList, ViewChildren, AfterViewInit,
     Renderer, Input, AfterViewChecked
 } from "@angular/core";
-import { IMovie } from "../model";
+import { IMovie } from "../../model";
 
 @Component({
     selector: 'app-featured-slider',

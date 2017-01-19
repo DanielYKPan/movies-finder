@@ -3,7 +3,7 @@
  */
 
 import { Component, OnInit, Input, ChangeDetectionStrategy } from "@angular/core";
-import { IMovie } from "../model";
+import { IMovie } from "../../model";
 
 @Component({
     selector: 'app-movie-card',

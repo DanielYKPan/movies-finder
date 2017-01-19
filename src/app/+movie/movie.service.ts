@@ -6,15 +6,14 @@ import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Response } from "@angular/http";
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs";
-import { IGenre, PaginatedResult, IMovie, IMovieDetails, ICredits, IMovieVideos, IReview } from "./model";
+import { IGenre, PaginatedResult, IMovie, IMovieDetails, ICredits, IMovieVideos, IReview } from "../model";
+import { BaseService } from "../base.service";
 
 @Injectable()
-export class MovieService {
-
-    private readonly apikey: string;
+export class MovieService extends BaseService {
 
     constructor( private http: Http ) {
-        this.apikey = '0ea0b3ae1ad79cc9e6354410580840c3';
+        super();
     }
 
     /* Get Popular Movie List */
@@ -78,7 +77,7 @@ export class MovieService {
     }
 
     /* Get the user reviews for a movie. */
-    getMovieReviews(id: string): Observable<PaginatedResult<IReview[]>> {
+    getMovieReviews( id: string ): Observable<PaginatedResult<IReview[]>> {
         let search = new URLSearchParams();
         search.set('api_key', this.apikey);
         let paginatedResult: PaginatedResult<IReview[]> = new PaginatedResult<IReview[]>();

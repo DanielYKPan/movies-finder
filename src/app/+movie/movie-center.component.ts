@@ -5,7 +5,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from "./movie.service";
 import { Observable } from "rxjs";
-import { IGenre } from "./model";
+import { IGenre } from "../model";
 
 @Component({
     selector: 'app-movie',
