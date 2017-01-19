@@ -11,7 +11,6 @@ import { HttpModule } from "@angular/http";
 import { MovieService } from "./movie.service";
 import { SharedModule } from "../shared";
 import { MoviesComponent } from "./movies";
-import { MovieCardComponent } from "./movie-card";
 import { GenresComponent } from "./genres";
 import { MovieDetailsComponent, FeaturedSliderComponent } from "./movie-details";
 
@@ -20,7 +19,6 @@ import { MovieDetailsComponent, FeaturedSliderComponent } from "./movie-details"
         // Components / Directives/ Pipes
         MovieCenterComponent,
         MoviesComponent,
-        MovieCardComponent,
         GenresComponent,
         MovieDetailsComponent,
         FeaturedSliderComponent,
