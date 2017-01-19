@@ -2,7 +2,7 @@
  * movie-details.component
  */
 
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ElementRef } from "@angular/core";
 import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MovieService } from "../movie.service";
@@ -28,6 +28,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
     constructor( private route: ActivatedRoute,
                  private router: Router,
+                 private element: ElementRef,
                  private sanitizer: DomSanitizer,
                  private movieService: MovieService ) {
     }
@@ -38,8 +39,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
         this.routerEventsSub = this.router.events
             .filter(event => event instanceof NavigationEnd)
             .subscribe(( event ) => {
-                //window.scrollTo(0, 0);
-                document.body.scrollTop = 0;
+                this.element.nativeElement.scrollIntoView();
             });
 
         this.getMovieSub = this.route.params

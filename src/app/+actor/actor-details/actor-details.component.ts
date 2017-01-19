@@ -7,6 +7,7 @@ import { ActorService } from "../actor.service";
 import { ActivatedRoute, Params } from "@angular/router";
 import { Subscription, Observable } from "rxjs";
 import { IActor, IMovie } from "../../model";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
     selector: 'app-actor-details',
@@ -21,6 +22,7 @@ export class ActorDetailsComponent implements OnInit, OnDestroy {
     private getActorSub: Subscription;
 
     constructor( private route: ActivatedRoute,
+                 private sanitizer: DomSanitizer,
                  private actorService: ActorService ) {
     }
 
@@ -35,6 +37,7 @@ export class ActorDetailsComponent implements OnInit, OnDestroy {
             .subscribe(
                 res => {
                     this.actor = res[0];
+                    //this.actor.homepage = this.sanitizer.bypassSecurityTrustResourceUrl(res[0].homepage);
                     this.movies = res[1].cast;
                 }
             );

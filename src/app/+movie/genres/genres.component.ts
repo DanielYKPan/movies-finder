@@ -2,7 +2,7 @@
  * genres.component
  */
 
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ElementRef } from "@angular/core";
 import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
 import { Subscription } from "rxjs";
 import { PaginatedResult, IMovie } from "../../model";
@@ -25,6 +25,7 @@ export class GenresComponent implements OnInit, OnDestroy {
 
     constructor( private route: ActivatedRoute,
                  private router: Router,
+                 private element: ElementRef,
                  private movieService: MovieService ) {
     }
 
@@ -34,8 +35,7 @@ export class GenresComponent implements OnInit, OnDestroy {
         this.routerEventsSub = this.router.events
             .filter(event => event instanceof NavigationEnd)
             .subscribe(( event ) => {
-                //window.scrollTo(0, 0);
-                document.body.scrollTop = 0;
+                this.element.nativeElement.scrollIntoView();
             });
 
         this.getMoviesSub = this.route.params
