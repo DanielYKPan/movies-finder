@@ -37,3 +37,31 @@ $header-bg-color: #df691a;
 .icon {
   margin-right: .5rem;
 }
+
+.nav {
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .parent {
+    display: flex;
+    height: 100%;
+  }
+
+  .child {
+    padding: $base-line-height 1rem;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+      background-color: darken($header-bg-color, 5%);
+    }
+
+    &.active {
+      background-color: darken($header-bg-color, 10%);
+    }
+  }
+}

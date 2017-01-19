@@ -2,6 +2,17 @@
     <div class="container">
         <div class="banner">
             <div class="brand-wrap" [routerLink]="['/movies']"><i class="icon icon-video"></i>Movies Finder</div>
+
+            <nav class="nav">
+                <ul class="parent">
+                    <li class="child" [routerLink]="['/movies']" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">Movies
+                    </li>
+                    <li class="child" [routerLink]="['/actors']" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">Artists
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </header>
