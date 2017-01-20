@@ -17,11 +17,12 @@
 
 .main-panel {
   width: 100%;
-  padding: $base-line-height 1rem;
+  padding: $base-line-height 0;
 
   @include respond-to(large) {
     width: 80%;
     height: 100%;
+    padding: $base-line-height 1rem;
     overflow-y: scroll;
   }
 }
