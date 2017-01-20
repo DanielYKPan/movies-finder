@@ -7,9 +7,9 @@ import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared";
 import { routes } from './actor.routes';
 import { ActorCenterComponent } from "./actor-center.component";
-import { ActorDetailsComponent } from "./actor-details";
+import { ActorDetailsComponent, ActorDetailsResolver } from "./actor-details";
 import { ActorService } from "./actor.service";
-import { ActorsComponent } from "./actors";
+import { ActorsComponent, ActorsResolver } from "./actors";
 
 
 @NgModule({
@@ -24,7 +24,9 @@ import { ActorsComponent } from "./actors";
         RouterModule.forChild(routes),
     ],
     providers: [
-        ActorService
+        ActorService,
+        ActorsResolver,
+        ActorDetailsResolver,
     ]
 })
 export class ActorModule {

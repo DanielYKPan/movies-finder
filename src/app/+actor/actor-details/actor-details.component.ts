@@ -3,11 +3,10 @@
  */
 
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ActorService } from "../actor.service";
-import { ActivatedRoute, Params } from "@angular/router";
-import { Subscription, Observable } from "rxjs";
-import { IActor, IMovie } from "../../model";
-import { DomSanitizer } from "@angular/platform-browser";
+import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
+import { Subscription } from "rxjs";
+import { IActor, IActorCredits, IActorCast } from "../../model";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
 @Component({
     selector: 'app-actor-details',
@@ -18,33 +17,43 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class ActorDetailsComponent implements OnInit, OnDestroy {
 
     actor: IActor;
-    movies: Array<IMovie>;
+    movies: Array<IActorCast>;
     private getActorSub: Subscription;
+    private routerEventsSub: Subscription;
 
     constructor( private route: ActivatedRoute,
-                 private sanitizer: DomSanitizer,
-                 private actorService: ActorService ) {
+                 private router: Router,
+                 private sanitizer: DomSanitizer ) {
     }
 
     ngOnInit(): void {
-        this.getActorSub = this.route.params
-            .switchMap(( params: Params ) => {
-                let actor_id = params['id'];
-                let actor$ = this.actorService.getActorDetails(actor_id);
-                let actor_movie_credits$ = this.actorService.getActorMovieCredits(actor_id);
-                return Observable.forkJoin([actor$, actor_movie_credits$]);
-            })
-            .subscribe(
-                res => {
-                    this.actor = res[0];
-                    //this.actor.homepage = this.sanitizer.bypassSecurityTrustResourceUrl(res[0].homepage);
-                    this.movies = res[1].cast;
-                }
-            );
+
+        // work around: Changing route doesn't scroll to top in the new page #7791
+        this.routerEventsSub = this.router.events
+            .filter(event => event instanceof NavigationEnd)
+            .subscribe(( event ) => {
+                document.body.scrollTop = 0;
+            });
+
+        this.getActorSub = this.route.data.subscribe(
+            ( data: {actor: [IActor, IActorCredits]} ) => {
+                this.actor = data.actor[0];
+                this.movies = data.actor[1].cast;
+                this.actor.homepage_url = this.getHomepageUrl(this.actor.homepage);
+            }
+        );
     }
 
     ngOnDestroy(): void {
         if (this.getActorSub)
             this.getActorSub.unsubscribe();
+    }
+
+    private getHomepageUrl( url: string ): SafeResourceUrl {
+        if (url.substr(0, 4) === 'http') {
+            return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+        } else {
+            return this.sanitizer.bypassSecurityTrustResourceUrl('//' + url);
+        }
     }
 }

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from "../base.service";
 import { Http, URLSearchParams, Response } from "@angular/http";
 import { Observable } from "rxjs";
-import { IActor, ICredits, PaginatedResult } from "../model";
+import { IActor, PaginatedResult, IActorCredits } from "../model";
 
 @Injectable()
 export class ActorService extends BaseService {
@@ -15,7 +15,7 @@ export class ActorService extends BaseService {
         super();
     }
 
-    getPopularActors(): Observable<PaginatedResult<IActor[]>>{
+    getPopularActors(): Observable<PaginatedResult<IActor[]>> {
         let search = new URLSearchParams();
         search.set('api_key', this.apikey);
         let paginatedResult: PaginatedResult<IActor[]> = new PaginatedResult<IActor[]>();
@@ -45,7 +45,7 @@ export class ActorService extends BaseService {
     }
 
     /* Get the movie credits for a person */
-    getActorMovieCredits(id: string): Observable<ICredits> {
+    getActorMovieCredits( id: string ): Observable<IActorCredits> {
         let search = new URLSearchParams();
         search.set('api_key', this.apikey);
         return this.http.get('https://api.themoviedb.org/3/person/' + id + '/movie_credits', {search})

@@ -9,12 +9,9 @@ import { routes } from './movie.routes';
 import { MovieCenterComponent } from './movie-center.component';
 import { MovieService } from "./movie.service";
 import { SharedModule } from "../shared";
-import { MoviesComponent } from "./movies";
-import { GenresComponent } from "./genres";
-import { MovieDetailsComponent } from "./movie-details";
-import { MoviesResolver } from "./movies-resolver.service";
-import { GenreMoviesResolver } from "./genre-movies-resolver.service";
-import { MovieDetailsResolver } from "./movie-details-resolver.service";
+import { MoviesComponent, MoviesResolver } from "./movies";
+import { GenresComponent, GenreMoviesResolver } from "./genres";
+import { MovieDetailsComponent, MovieDetailsResolver } from "./movie-details";
 
 @NgModule({
     declarations: [
