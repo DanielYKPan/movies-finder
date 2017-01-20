@@ -1,12 +1,11 @@
 {
-  "vendor": {
-    "js": "movies-finder/dist/vendor.551f08e74fd9e78a0fea.bundle.js"
-  },
   "main": {
-    "js": "movies-finder/dist/main.604fc0a5ff8e6ff662b3.bundle.js",
-    "css": "movies-finder/dist/main.1367918e8b730d6a3f6c50b583d402fc.css"
+    "js": "main.bundle.js"
+  },
+  "vendor": {
+    "js": "vendor.bundle.js"
   },
   "polyfills": {
-    "js": "movies-finder/dist/polyfills.60dbe827b1b8353af66f.bundle.js"
+    "js": "polyfills.bundle.js"
   }
 }

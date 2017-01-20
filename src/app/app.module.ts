@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import {
     NgModule,
     ApplicationRef
@@ -38,9 +38,17 @@ import { SharedModule } from "./shared";
 import { CoreModule } from "./core";
 import { HomeComponent } from "./home/home.component";
 
+/* HammerJS Custom Config */
+import { MyHammerConfig } from "./hammer.config";
+
 // Application wide providers
 const APP_PROVIDERS = [
-    AppState
+    AppState,
+    {
+        // hammer instantion with custom config
+        provide: HAMMER_GESTURE_CONFIG,
+        useClass: MyHammerConfig ,
+    },
 ];
 
 type StoreType = {
