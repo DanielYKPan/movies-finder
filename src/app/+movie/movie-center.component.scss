@@ -4,39 +4,71 @@
 
 .movie-center {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   height: calc(100vh - #{$header-height});
   background-color: $brand-color;
+  overflow-y: scroll;
+
+  @include respond-to(large) {
+    overflow-y: hidden;
+  }
 }
 
 .main-panel {
-  width: 80%;
-  height: 100%;
+  width: 100%;
   padding: $base-line-height 1rem;
-  overflow-y: scroll;
+
+  @include respond-to(large) {
+    width: 80%;
+    height: 100%;
+    overflow-y: scroll;
+  }
 }
 
 .left-panel {
-  width: 20%;
+  width: 100%;
   padding: $base-line-height 1rem;
+
+  @include respond-to(large) {
+    width: 20%;
+  }
 }
 
 .nav-genres {
   color: $white;
-  height: 100%;
-  overflow-y: scroll;
-  background-color: hsl(194, 19%, 40%);
-  border-radius: .2rem;
+
+  @include respond-to(large) {
+    height: 100%;
+    overflow-y: scroll;
+    background-color: hsl(194, 19%, 40%);
+    border-radius: .2rem;
+  }
 }
 
 .genre-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
   padding: $base-line-height 1rem;
 }
 
 .genre-cell {
-  height: $base-line-height * 2;
-  padding: $base-line-height/2 1rem;
-  cursor: pointer;
+
+  background-color: #00B5AD;
+  border-radius: .3rem;
+  margin: .3rem;
+  padding: .2rem;
+
+  @include respond-to(large) {
+    width: 100%;
+    height: $base-line-height * 2;
+    background-color: transparent;
+    border-radius: 0;
+    margin: 0;
+    padding: $base-line-height/2 1rem;
+    cursor: pointer;
+  }
 
   &:hover {
     background-color: hsl(196, 18%, 36%);
