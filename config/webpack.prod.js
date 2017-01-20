@@ -56,7 +56,7 @@ module.exports = function (env) {
              */
             path: helpers.root('dist'),
 
-            //publicPath: 'movies-finder/dist/',
+            publicPath: 'movies-finder/dist/',
 
             /**
              * Specifies the name of each output file on disk.
