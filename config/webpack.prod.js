@@ -56,7 +56,7 @@ module.exports = function (env) {
              */
             path: helpers.root('dist'),
 
-            publicPath: 'movies-finder/dist/',
+            //publicPath: 'movies-finder/dist/',
 
             /**
              * Specifies the name of each output file on disk.
@@ -110,13 +110,6 @@ module.exports = function (env) {
                         loader: 'css-loader!sass-loader'
                     }),
                     include: [helpers.root('src', 'styles')]
-                },
-
-                /* File loader for supporting images, for example, in CSS files.
-                 */
-                {
-                    test: /\.(jpg|png|gif)$/,
-                    use: 'html-loader?root=movies-finder/dist/'
                 },
 
             ]
