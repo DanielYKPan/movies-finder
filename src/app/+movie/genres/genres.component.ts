@@ -3,10 +3,9 @@
  */
 
 import { Component, OnInit, OnDestroy, ElementRef } from "@angular/core";
-import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
+import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
 import { Subscription } from "rxjs";
 import { PaginatedResult, IMovie } from "../../model";
-import { MovieService } from "../movie.service";
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -25,8 +24,7 @@ export class GenresComponent implements OnInit, OnDestroy {
 
     constructor( private route: ActivatedRoute,
                  private router: Router,
-                 private element: ElementRef,
-                 private movieService: MovieService ) {
+                 private element: ElementRef ) {
     }
 
     ngOnInit(): void {
@@ -35,15 +33,16 @@ export class GenresComponent implements OnInit, OnDestroy {
         this.routerEventsSub = this.router.events
             .filter(event => event instanceof NavigationEnd)
             .subscribe(( event ) => {
-                this.element.nativeElement.scrollIntoView();
+                //this.element.nativeElement.scrollIntoView();
+                document.body.scrollTop = 0;
             });
 
-        this.getMoviesSub = this.route.params
-            .switchMap(( params: Params ) => {
-                this.title = params['name'];
-                return this.movieService.getMoviesByGenre(params['id'])
-            })
-            .subscribe(( movies: PaginatedResult<IMovie[]> ) => this.movies = movies);
+        this.getMoviesSub = this.route.data.subscribe(
+            (data: {res: {'paginatedResult': PaginatedResult<IMovie[]>, 'title': string}}) => {
+                this.movies = data.res.paginatedResult;
+                this.title = data.res.title;
+            }
+        );
     }
 
     ngOnDestroy(): void {

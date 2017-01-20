@@ -3,10 +3,10 @@
  */
 
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { MovieService } from "../movie.service";
-import { Observable, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 import { PaginatedResult, IMovie } from "../../model";
 import 'rxjs/add/observable/forkJoin';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'app-movies-home',
@@ -21,17 +21,14 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
     private getMoviesSub: Subscription;
 
-    constructor( private movieService: MovieService ) {
+    constructor( private route: ActivatedRoute ) {
     }
 
     ngOnInit(): void {
-        let popularList$ = this.movieService.getPopular();
-        let topRatedList$ = this.movieService.getTopRatedMovies();
-
-        Observable.forkJoin([popularList$, topRatedList$]).subscribe(
-            results => {
-                this.popularList = results[0];
-                this.topRatedList = results[1];
+        this.getMoviesSub = this.route.data.subscribe(
+            ( data: {res: [PaginatedResult<IMovie[]>, PaginatedResult<IMovie[]>]} ) => {
+                this.popularList = data.res[0];
+                this.topRatedList = data.res[1];
             }
         );
     }
