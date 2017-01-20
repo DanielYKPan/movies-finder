@@ -3,16 +3,15 @@
  */
 
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { MovieService } from "../+movie/movie.service";
-import { IMovie, IVideo } from "../model";
-import { Subscription, Observable } from "rxjs";
+import { IMovie, IVideo, PaginatedResult, IMovieVideos } from "../model";
+import { Subscription } from "rxjs";
 import { DomSanitizer } from "@angular/platform-browser";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
-    providers: [MovieService],
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
@@ -22,30 +21,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     featuredMovie: IMovie;
     private getMoviesSub: Subscription;
 
-    constructor( private sanitizer: DomSanitizer,
-                 private movieService: MovieService ) {
+    constructor( private route: ActivatedRoute,
+                 private sanitizer: DomSanitizer ) {
     }
 
     ngOnInit(): void {
-
-        let moviesUpComing$ = this.movieService.getUpComingMovies();
-        let moviesNowPlaying$ = this.movieService.getNowPlayingMovies();
-        let featuredVideo$ = moviesNowPlaying$
-            .map(res => res.result[0].id)
-            .mergeMap(id => this.movieService.getMovieVideos(id.toString()));
-
-        this.getMoviesSub = Observable.forkJoin([moviesUpComing$, moviesNowPlaying$, featuredVideo$])
-            .subscribe(
-                res => {
-                    this.moviesUpComing = res[0].result;
-                    this.moviesNowPlaying = res[1].result;
-                    this.featuredMovie = this.moviesNowPlaying.shift();
-                    if (res[2].results) {
-                        this.featuredVideo = res[2].results[0];
-                        this.featuredVideo.url = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.featuredVideo.key)
-                    }
+        this.getMoviesSub = this.route.data.subscribe(
+            (data : {res: [PaginatedResult<IMovie[]>, PaginatedResult<IMovie[]>, IMovieVideos]}) => {
+                this.moviesUpComing = data.res[0].result;
+                this.moviesNowPlaying = data.res[1].result;
+                this.featuredMovie = this.moviesNowPlaying.shift();
+                if (data.res[2].results) {
+                    this.featuredVideo = data.res[2].results[0];
+                    this.featuredVideo.url = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.featuredVideo.key)
                 }
-            );
+            }
+        );
     }
 
     ngOnDestroy(): void {

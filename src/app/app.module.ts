@@ -37,9 +37,11 @@ import { SharedModule } from "./shared";
  * */
 import { CoreModule } from "./core";
 import { HomeComponent } from "./home/home.component";
+import { HomeDataResolver } from "./home";
 
 /* HammerJS Custom Config */
 import { MyHammerConfig } from "./hammer.config";
+import { MovieService } from "./+movie/movie.service";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -49,6 +51,8 @@ const APP_PROVIDERS = [
         provide: HAMMER_GESTURE_CONFIG,
         useClass: MyHammerConfig ,
     },
+    MovieService,
+    HomeDataResolver,
 ];
 
 type StoreType = {

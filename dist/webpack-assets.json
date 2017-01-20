@@ -3,7 +3,7 @@
     "js": "movies-finder/dist/vendor.551f08e74fd9e78a0fea.bundle.js"
   },
   "main": {
-    "js": "movies-finder/dist/main.872499cb9c2772ec33a4.bundle.js",
+    "js": "movies-finder/dist/main.0a2ddff922b8bfe94b63.bundle.js",
     "css": "movies-finder/dist/main.1367918e8b730d6a3f6c50b583d402fc.css"
   },
   "polyfills": {

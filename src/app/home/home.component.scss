@@ -9,9 +9,8 @@ h3 {
 
 .home {
   width: 100%;
-  height: calc(100vh - #{$header-height});
+  height: 100%;
   background-color: $brand-color;
-  overflow-y: scroll;
 }
 
 .home-wrapper {
