@@ -20,7 +20,7 @@
   width: 50%;
   padding: .5rem;
 
-  @include respond-to(medium) {
+  @include respond-to(large) {
     width: 25%;
   }
 }

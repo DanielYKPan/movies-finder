@@ -3,10 +3,8 @@
     <img *ngIf="!movie.poster_path" class="movie-card-img" src="/assets/img/abstract-image.jpg">
     <div class="caption">
         <h4><a [routerLink]="['/movies', movie.id]">{{movie.title}}</a></h4>
-        <p class="caption-row-2">Release Date: {{movie.release_date}}</p>
-        <p class="caption-row-3">
-            <a [routerLink]="['/movies', movie.id]">View details »</a>
-            <small *ngIf="movie.vote_average" class="vote">{{movie.vote_average}}<i class="icon icon-star"></i></small>
-        </p>
+        <p>Release Date: {{movie.release_date}}</p>
+        <p><a [routerLink]="['/movies', movie.id]">View details »</a></p>
+        <small *ngIf="movie.vote_average" class="vote">{{movie.vote_average}}<i class="icon icon-star"></i></small>
     </div>
 </div>
