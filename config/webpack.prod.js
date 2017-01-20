@@ -116,7 +116,7 @@ module.exports = function (env) {
                  */
                 {
                     test: /\.(jpg|png|gif)$/,
-                    use: 'html-loader'
+                    use: 'html-loader?root=movies-finder/dist/'
                 },
 
             ]
