@@ -34,7 +34,10 @@ ul {
 
 .row {
   margin-bottom: $base-line-height*2;
-  padding: 0 .5rem;
+
+  @include respond-to(medium) {
+    padding: 0 .5rem;
+  }
 }
 
 .btn {
@@ -66,16 +69,25 @@ ul {
 
 .details {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .details-left-panel {
-  width: 35%;
-  padding: 0 .5rem;
+  width: 100%;
+
+  @include respond-to(medium) {
+    width: 35%;
+    padding: 0 .5rem;
+  }
 }
 
 .details-right-panel {
-  width: 65%;
-  padding: 0 .5rem;
+  width: 100%;
+
+  @include respond-to(medium) {
+    width: 65%;
+    padding: 0 .5rem;
+  }
 }
 
 .thumbnail {
@@ -131,7 +143,11 @@ img.thumbnail {
 
   .cast-cell {
     width: 25%;
-    padding: .5rem;
+    padding: .1rem;
+
+    @include respond-to(medium) {
+      padding: .5rem;
+    }
   }
 
   .cast-caption {
@@ -149,8 +165,12 @@ img.thumbnail {
 
 .videos {
   flex-wrap: wrap;
-  width: 70%;
+  width: 100%;
   margin: 0 auto $base-line-height*2;
+
+  @include respond-to(large) {
+    width: 70%;
+  }
 }
 
 .video-name,
@@ -192,9 +212,13 @@ img.thumbnail {
   width: 100%;
 
   .review {
-    width: 50%;
+    width: 100%;
     float: left;
     padding: 0 1rem;
+
+    @include respond-to(medium) {
+      width: 50%;
+    }
   }
 
   blockquote {
