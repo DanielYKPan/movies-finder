@@ -17,6 +17,10 @@
 
 .main-wrapper {
   color: $white;
-  width: 80%;
+  width: 95%;
   margin: 0 auto;
+
+  @include respond-to(large) {
+    width: 80%;
+  }
 }

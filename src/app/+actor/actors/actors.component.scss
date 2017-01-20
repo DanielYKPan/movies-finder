@@ -14,12 +14,21 @@ h5 {
 
 .actor-list {
   display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
   width: 100%;
 
   .actor-cell {
-    width: 20%;
+    width: 50%;
     padding: $base-line-height/2 .5rem;
+
+    @include respond-to(small) {
+      width: 33%;
+    }
+
+    @include respond-to(large) {
+      width: 20%;
+    }
   }
 }
 
