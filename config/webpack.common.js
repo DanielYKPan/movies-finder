@@ -217,7 +217,8 @@ module.exports = function (options) {
             // This enables tree shaking of the vendor modules
             new CommonsChunkPlugin({
                 name: 'vendor',
-                chunks: ['main']
+                chunks: ['main'],
+                minChunks: module => /node_modules\//.test(module.resource)
             }),
             // Specify the correct order the scripts will be injected in
             new CommonsChunkPlugin({
