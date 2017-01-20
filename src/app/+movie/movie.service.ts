@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Response } from "@angular/http";
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs";
-import { IGenre, PaginatedResult, IMovie, IMovieDetails, ICredits, IMovieVideos, IReview } from "../model";
+import { IGenre, PaginatedResult, IMovie, IMovieDetails, IMovieCredits, IMovieVideos, IReview } from "../model";
 import { BaseService } from "../base.service";
 
 @Injectable()
@@ -57,7 +57,7 @@ export class MovieService extends BaseService {
     }
 
     /* Get Movie Credits including movie's casts and crew */
-    getMovieCredits( id: string ): Observable<ICredits> {
+    getMovieCredits( id: string ): Observable<IMovieCredits> {
         let search = new URLSearchParams();
         search.set('api_key', this.apikey);
         return this.http.get('https://api.themoviedb.org/3/movie/' + id + '/credits', {search})

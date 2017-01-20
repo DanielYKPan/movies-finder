@@ -4,9 +4,9 @@
 
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
-import { PaginatedResult, IMovie } from "../model";
+import { PaginatedResult, IMovie } from "../../model";
 import { Observable } from "rxjs";
-import { MovieService } from "./movie.service";
+import { MovieService } from "../movie.service";
 
 @Injectable()
 export class MoviesResolver implements Resolve<[PaginatedResult<IMovie[]>, PaginatedResult<IMovie[]>]> {

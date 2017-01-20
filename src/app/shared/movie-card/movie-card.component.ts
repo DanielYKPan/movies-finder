@@ -3,7 +3,7 @@
  */
 
 import { Component, OnInit, Input, ChangeDetectionStrategy } from "@angular/core";
-import { IMovie } from "../../model";
+import { IMovie, IActorCast } from "../../model";
 
 @Component({
     selector: 'app-movie-card',
@@ -14,7 +14,7 @@ import { IMovie } from "../../model";
 
 export class MovieCardComponent implements OnInit {
 
-    @Input() movie: IMovie;
+    @Input() movie: IMovie | IActorCast;
 
     constructor() {
     }

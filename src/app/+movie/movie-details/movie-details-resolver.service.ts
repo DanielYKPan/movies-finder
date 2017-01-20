@@ -3,18 +3,18 @@
  */
 
 import { Injectable } from '@angular/core';
-import { MovieService } from "./movie.service";
+import { MovieService } from "../movie.service";
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
-import { IMovieDetails, ICredits, IMovieVideos, PaginatedResult, IMovie, IReview } from "../model";
+import { IMovieDetails, IMovieCredits, IMovieVideos, PaginatedResult, IMovie, IReview } from "../../model";
 import { Observable } from "rxjs";
 
 @Injectable()
-export class MovieDetailsResolver implements Resolve<[IMovieDetails, ICredits, IMovieVideos, PaginatedResult<IMovie[]>, PaginatedResult<IReview[]>]> {
+export class MovieDetailsResolver implements Resolve<[IMovieDetails, IMovieCredits, IMovieVideos, PaginatedResult<IMovie[]>, PaginatedResult<IReview[]>]> {
 
     constructor( private ms: MovieService ) {
     }
 
-    resolve( route: ActivatedRouteSnapshot, state: RouterStateSnapshot ): Observable<[IMovieDetails, ICredits, IMovieVideos, PaginatedResult<IMovie[]>, PaginatedResult<IReview[]>]>|Promise<[IMovieDetails, ICredits, IMovieVideos, PaginatedResult<IMovie[]>, PaginatedResult<IReview[]>]>|[IMovieDetails, ICredits, IMovieVideos, PaginatedResult<IMovie[]>, PaginatedResult<IReview[]>] {
+    resolve( route: ActivatedRouteSnapshot, state: RouterStateSnapshot ): Observable<[IMovieDetails, IMovieCredits, IMovieVideos, PaginatedResult<IMovie[]>, PaginatedResult<IReview[]>]>|Promise<[IMovieDetails, IMovieCredits, IMovieVideos, PaginatedResult<IMovie[]>, PaginatedResult<IReview[]>]>|[IMovieDetails, IMovieCredits, IMovieVideos, PaginatedResult<IMovie[]>, PaginatedResult<IReview[]>] {
         let movie_id = route.params['id'];
         let movie$ = this.ms.getMovie(movie_id);
         let movie_credits$ = this.ms.getMovieCredits(movie_id);

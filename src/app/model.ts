@@ -11,6 +11,7 @@ export interface IActor {
     deathday: string;
     gender: number;
     homepage: string;
+    homepage_url: SafeResourceUrl;
     id: number;
     imdb_id: string;
     name: string;
@@ -19,14 +20,33 @@ export interface IActor {
     profile_path: string;
 }
 
-export interface ICast {
-    cast_id: number;
+export interface IActorCast {
+    adult: boolean;
     character: string;
     credit_id: string;
     id: number;
-    name: string;
-    order: number;
-    profile_path: string;
+    original_title: string;
+    poster_path: string;
+    release_date: string;
+    title: string;
+}
+
+export interface IActorCrew {
+    adult: boolean;
+    credit_id: string;
+    department: string;
+    id: number;
+    job: string;
+    original_title: string;
+    poster_path: string;
+    release_date: string;
+    title: string;
+}
+
+export interface IActorCredits {
+    id: number;
+    cast: Array<IActorCast>;
+    crew: Array<IActorCrew>;
 }
 
 export interface ICollection {
@@ -34,26 +54,6 @@ export interface ICollection {
     id: number;
     name: string;
     poster_path: string;
-}
-
-export interface ICrew {
-    adult: boolean;
-    credit_id: string;
-    department: string;
-    id: number;
-    job: string;
-    name: string;
-    original_title: string;
-    poster_path: string;
-    profile_path: string;
-    release_date: string;
-    title: string;
-}
-
-export interface ICredits {
-    id: number;
-    cast: Array<ICast>;
-    crew: Array<ICrew>;
 }
 
 export interface IGenre {
@@ -76,6 +76,31 @@ export interface IMovie {
     video: boolean;
     vote_average: number;
     vote_count: number;
+}
+
+export interface IMovieCast {
+    cast_id: number;
+    character: string;
+    credit_id: string;
+    id: number;
+    name: string;
+    order: number;
+    profile_path: string;
+}
+
+export interface IMovieCrew {
+    credit_id: string;
+    department: string;
+    id: number;
+    job: string;
+    name: string;
+    profile_path: string;
+}
+
+export interface IMovieCredits {
+    id: number;
+    cast: Array<IMovieCast>;
+    crew: Array<IMovieCrew>;
 }
 
 export interface IMovieDetails {

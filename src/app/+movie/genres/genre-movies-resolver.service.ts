@@ -3,9 +3,9 @@
  */
 
 import { Injectable } from '@angular/core';
-import { MovieService } from "./movie.service";
+import { MovieService } from "../movie.service";
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
-import { PaginatedResult, IMovie } from "../model";
+import { PaginatedResult, IMovie } from "../../model";
 import { Observable } from "rxjs";
 
 @Injectable()

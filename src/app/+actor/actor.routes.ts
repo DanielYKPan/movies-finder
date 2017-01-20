@@ -2,16 +2,28 @@
  * actor.routes
  */
 import { ActorCenterComponent } from "./actor-center.component";
-import { ActorDetailsComponent } from "./actor-details";
-import { ActorsComponent } from "./actors";
+import { ActorDetailsComponent, ActorDetailsResolver } from "./actor-details";
+import { ActorsComponent, ActorsResolver } from "./actors";
 
 export const routes = [
     {
         path: '',
         component: ActorCenterComponent,
         children: [
-            {path: '', component: ActorsComponent},
-            {path: ':id', component: ActorDetailsComponent},
+            {
+                path: '',
+                component: ActorsComponent,
+                resolve: {
+                    actors: ActorsResolver
+                }
+            },
+            {
+                path: ':id',
+                component: ActorDetailsComponent,
+                resolve: {
+                    actor: ActorDetailsResolver
+                }
+            },
         ]
     },
 ];
