@@ -2,12 +2,11 @@
  * movie-details.component
  */
 
-import { Component, OnInit, OnDestroy, ElementRef } from "@angular/core";
-import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
-import { MovieService } from "../movie.service";
-import { Subscription, Observable } from "rxjs";
-import { IMovieDetails, ICast, IVideo, IMovie, IReview } from "../../model";
+import { Subscription } from "rxjs";
+import { IMovieDetails, ICast, IVideo, IMovie, IReview, ICredits, IMovieVideos, PaginatedResult } from "../../model";
 import 'rxjs/add/observable/forkJoin';
 
 @Component({
@@ -28,9 +27,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
     constructor( private route: ActivatedRoute,
                  private router: Router,
-                 private element: ElementRef,
-                 private sanitizer: DomSanitizer,
-                 private movieService: MovieService ) {
+                 private sanitizer: DomSanitizer ) {
     }
 
     ngOnInit(): void {
@@ -39,31 +36,21 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
         this.routerEventsSub = this.router.events
             .filter(event => event instanceof NavigationEnd)
             .subscribe(( event ) => {
-                this.element.nativeElement.scrollIntoView();
+                document.body.scrollTop = 0;
             });
 
-        this.getMovieSub = this.route.params
-            .switchMap(( params: Params ) => {
-                let movie_id = params['id'];
-                let movie$ = this.movieService.getMovie(movie_id);
-                let movie_credits$ = this.movieService.getMovieCredits(movie_id);
-                let movie_videos$ = this.movieService.getMovieVideos(movie_id);
-                let movie_similar$ = this.movieService.getSimilarMovies(movie_id);
-                let movie_reviews$ = this.movieService.getMovieReviews(movie_id);
-                return Observable.forkJoin([movie$, movie_credits$, movie_videos$, movie_similar$, movie_reviews$]);
-            })
-            .subscribe(
-                res => {
-                    this.movie = res[0];
-                    this.cast = res[1].cast.filter(( item ) => item.profile_path).slice(0, 4);
-                    if (res[2].results && res[2].results.length > 0) {
-                        this.video = res[2].results[0];
-                        this.video.url = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.video.key)
-                    }
-                    this.similarMovies = res[3].result;
-                    this.movieReviews = res[4].result;
+        this.getMovieSub = this.route.data.subscribe(
+            ( data: {res: [IMovieDetails, ICredits, IMovieVideos, PaginatedResult<IMovie[]>, PaginatedResult<IReview[]>]} ) => {
+                this.movie = data.res[0];
+                this.cast = data.res[1].cast.filter(( item ) => item.profile_path).slice(0, 4);
+                if (data.res[2].results && data.res[2].results.length > 0) {
+                    this.video = data.res[2].results[0];
+                    this.video.url = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.video.key)
                 }
-            );
+                this.similarMovies = data.res[3].result;
+                this.movieReviews = data.res[4].result;
+            }
+        );
     }
 
     ngOnDestroy(): void {

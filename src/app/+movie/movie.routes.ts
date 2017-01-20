@@ -7,6 +7,8 @@ import { MoviesComponent } from "./movies";
 import { GenresComponent } from "./genres";
 import { MovieDetailsComponent } from "./movie-details";
 import { MoviesResolver } from "./movies-resolver.service";
+import { GenreMoviesResolver } from "./genre-movies-resolver.service";
+import { MovieDetailsResolver } from "./movie-details-resolver.service";
 
 export const routes = [
     {
@@ -20,8 +22,20 @@ export const routes = [
                     res: MoviesResolver
                 }
             },
-            {path: ':id', component: MovieDetailsComponent},
-            {path: 'genres/:id/:name', component: GenresComponent},
+            {
+                path: ':id',
+                component: MovieDetailsComponent,
+                resolve: {
+                    res: MovieDetailsResolver
+                }
+            },
+            {
+                path: 'genres/:id/:name',
+                component: GenresComponent,
+                resolve: {
+                    res: GenreMoviesResolver
+                }
+            },
         ]
     },
 ];

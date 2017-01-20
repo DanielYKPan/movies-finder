@@ -52,7 +52,7 @@ export interface ICrew {
 
 export interface ICredits {
     id: number;
-    cast: Array<ICast|IMovie>;
+    cast: Array<ICast>;
     crew: Array<ICrew>;
 }
 
