@@ -111,6 +111,7 @@
     "file-loader": "^0.9.0",
     "find-root": "^1.0.0",
     "gh-pages": "^0.12.0",
+    "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.21.0",
     "imports-loader": "^0.7.0",
     "istanbul-instrumenter-loader": "1.2.0",

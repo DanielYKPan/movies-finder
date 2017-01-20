@@ -112,6 +112,13 @@ module.exports = function (env) {
                     include: [helpers.root('src', 'styles')]
                 },
 
+                /* File loader for supporting images, for example, in CSS files.
+                 */
+                {
+                    test: /\.(jpg|png|gif)$/,
+                    use: 'html-loader'
+                },
+
             ]
 
         },
