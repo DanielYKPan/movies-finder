@@ -56,7 +56,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
                 res => {
                     this.movie = res[0];
                     this.cast = res[1].cast.filter(( item ) => item.profile_path).slice(0, 4);
-                    if (res[2].results) {
+                    if (res[2].results && res[2].results.length > 0) {
                         this.video = res[2].results[0];
                         this.video.url = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.video.key)
                     }
