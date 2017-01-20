@@ -38,6 +38,10 @@ h3 {
     padding: 0 1rem;
     margin-bottom: $base-line-height;
 
+    @include respond-to(medium) {
+      width: 30%;
+    }
+
     @include respond-to(large) {
       width: 24%;
     }
@@ -47,6 +51,10 @@ h3 {
     width: 100%;
     padding: 0 1rem;
     margin-bottom: $base-line-height;
+
+    @include respond-to(medium) {
+      width: 70%;
+    }
 
     @include respond-to(large) {
       width: 76%;
