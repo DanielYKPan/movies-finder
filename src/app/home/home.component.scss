@@ -16,9 +16,13 @@ h3 {
 
 .home-wrapper {
   color: $white;
-  width: 80%;
+  width: 95%;
   margin: 0 auto;
   padding: $base-line-height*2 0;
+
+  @include respond-to(large) {
+    width: 80%;
+  }
 }
 
 .row {
@@ -27,15 +31,26 @@ h3 {
 
 .featured-movie {
   display: flex;
+  flex-wrap: wrap;
 
   .left-panel {
-    width: 24%;
+    width: 100%;
     padding: 0 1rem;
+    margin-bottom: $base-line-height;
+
+    @include respond-to(large) {
+      width: 24%;
+    }
   }
 
   .right-panel {
-    width: 76%;
+    width: 100%;
     padding: 0 1rem;
+    margin-bottom: $base-line-height;
+
+    @include respond-to(large) {
+      width: 76%;
+    }
   }
 }
 
