@@ -59,16 +59,25 @@ p {
 
 .details {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .details-left-panel {
-  width: 25%;
+  width: 100%;
   padding: 0 .5rem;
+
+  @include respond-to(medium) {
+    width: 25%;
+  }
 }
 
 .details-right-panel {
-  width: 75%;
+  width: 100%;
   padding: 0 .5rem;
+
+  @include respond-to(medium) {
+    width: 75%;
+  }
 }
 
 .thumbnail {
@@ -112,7 +121,11 @@ img.thumbnail {
   width: 100%;
 
   .movie-cell {
-    width: 20%;
+    width: 50%;
     padding: $base-line-height/2 .5rem;
+
+    @include respond-to(large) {
+      width: 20%;
+    }
   }
 }
