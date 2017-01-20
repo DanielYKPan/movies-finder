@@ -12,16 +12,22 @@ $header-bg-color: #df691a;
   color: $white;
   height: $header-height;
   background-color: $header-bg-color;
+  z-index: 9999999;
 }
 
 .container {
-  width: 80%;
+  width: 100%;
   height: 100%;
   margin: 0 auto;
+
+  @include respond-to(large) {
+    width: 80%;
+  }
 }
 
 .banner {
   display: flex;
+  flex-wrap: wrap;
   position: relative;
   height: 100%;
 }
@@ -39,6 +45,21 @@ $header-bg-color: #df691a;
 }
 
 .nav {
+  visibility: hidden;
+  width: 100%;
+  background-color: lighten($header-bg-color, 5%);
+  height: calc(100vh - #{$header-height});
+
+  &.show {
+    visibility: visible;
+  }
+
+  @include respond-to(large) {
+    visibility: visible;
+    width: auto;
+    height: 100%;
+    background-color: transparent;
+  }
 
   ul {
     list-style: none;
@@ -48,13 +69,23 @@ $header-bg-color: #df691a;
 
   .parent {
     display: flex;
-    height: 100%;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 100%;
+    height: inherit;
   }
 
   .child {
     padding: $base-line-height 1rem;
     cursor: pointer;
     user-select: none;
+    width: 100%;
+    border-bottom: 1px solid $mid-grey;
+
+    @include respond-to(large) {
+      border-bottom: none;
+      width: auto;
+    }
 
     &:hover {
       background-color: darken($header-bg-color, 5%);
@@ -62,6 +93,39 @@ $header-bg-color: #df691a;
 
     &.active {
       background-color: darken($header-bg-color, 10%);
+    }
+  }
+}
+
+.toggle-btn {
+  position: absolute;
+  top: $header-height / 6;
+  right: 1rem;
+  height: $header-height * 2 / 3;
+  width: $header-height * 2 / 3;
+
+  @include respond-to(large) {
+    display: none;
+  }
+
+  .circle-btn {
+    border-radius: 100%;
+    box-shadow: inset 0 0 0 2px $white;
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    > .icon {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 50%;
+      height: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .svg-icon {
+      fill: $white;
     }
   }
 }
