@@ -1,9 +1,9 @@
 {
   "main": {
-    "js": "movies-finder/distmain.cb84441a71513963a50b.bundle.js",
-    "css": "movies-finder/distmain.1367918e8b730d6a3f6c50b583d402fc.css"
+    "js": "movies-finder/dist/main.cb84441a71513963a50b.bundle.js",
+    "css": "movies-finder/dist/main.1367918e8b730d6a3f6c50b583d402fc.css"
   },
   "polyfills": {
-    "js": "movies-finder/distpolyfills.60dbe827b1b8353af66f.bundle.js"
+    "js": "movies-finder/dist/polyfills.60dbe827b1b8353af66f.bundle.js"
   }
 }
