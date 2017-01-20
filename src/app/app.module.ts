@@ -25,6 +25,8 @@ import { NoContentComponent } from './no-content';
 
 import '../styles/main.scss';
 
+import 'hammerjs';
+
 /*
  * Shared Module
  * */

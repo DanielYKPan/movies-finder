@@ -30,37 +30,45 @@ export class FeaturedSliderComponent implements OnInit, AfterViewChecked {
 
     ngAfterViewChecked(): void {
         let featuredListWidth = this.featuredList.nativeElement.offsetWidth;
-        let cardWidth = (featuredListWidth / 5).toString() + 'px';
-        let featuredTrackWidth = ((featuredListWidth / 5) * this.cards.length).toString() + 'px';
-
+        let cardWidth, featuredTrackWidth;
+        if (featuredListWidth > 980) {
+            cardWidth = (featuredListWidth / 5).toString() + 'px';
+            featuredTrackWidth = ((featuredListWidth / 5) * this.cards.length).toString() + 'px';
+        } else if (featuredListWidth < 980 && featuredListWidth > 450) {
+            cardWidth = (featuredListWidth / 3).toString() + 'px';
+            featuredTrackWidth = ((featuredListWidth / 3) * this.cards.length).toString() + 'px';
+        } else {
+            cardWidth = (featuredListWidth / 2).toString() + 'px';
+            featuredTrackWidth = ((featuredListWidth / 2) * this.cards.length).toString() + 'px';
+        }
         this.renderer.setElementStyle(this.featuredTrack.nativeElement, 'width', featuredTrackWidth);
         this.cards.map(card => {
             this.renderer.setElementStyle(card.nativeElement, 'width', cardWidth);
         });
     }
 
-    clickLeft(): void {
+    slideRight(): void {
         let distance = this.getSlideLeftDistance();
-        this.renderer.setElementStyle(this.featuredTrack.nativeElement, 'transform', 'translateX(' + distance + 'px' +')');
+        this.renderer.setElementStyle(this.featuredTrack.nativeElement, 'transform', 'translateX(' + distance + 'px' + ')');
     }
 
-    clickRight(): void {
+    slideLeft(): void {
         let distance = this.getSlideRightDistance();
-        if(distance === 0) return;
-        this.renderer.setElementStyle(this.featuredTrack.nativeElement, 'transform', 'translateX(' + distance + 'px' +')');
+        if (distance === 0) return;
+        this.renderer.setElementStyle(this.featuredTrack.nativeElement, 'transform', 'translateX(' + distance + 'px' + ')');
     }
 
     private getSlideRightDistance(): number {
         let xTrans = this.getTransX(this.featuredTrack.nativeElement.style.transform);
         let featuredListWidth = this.featuredList.nativeElement.offsetWidth;
         let featuredTrackWidth = this.featuredTrack.nativeElement.offsetWidth;
-        let diff =  featuredTrackWidth - Math.abs(xTrans) - featuredListWidth;
+        let diff = featuredTrackWidth - Math.abs(xTrans) - featuredListWidth;
 
         if (diff <= 0) {
             return 0;
-        }else if(diff < featuredListWidth) {
+        } else if (diff < featuredListWidth) {
             return xTrans - diff
-        }else {
+        } else {
             return xTrans - featuredListWidth;
         }
     }
@@ -68,7 +76,7 @@ export class FeaturedSliderComponent implements OnInit, AfterViewChecked {
     private getSlideLeftDistance(): number {
         let xTrans = this.getTransX(this.featuredTrack.nativeElement.style.transform);
 
-        if(xTrans === 0) return 0;
+        if (xTrans === 0) return 0;
 
         let featuredListWidth = this.featuredList.nativeElement.offsetWidth;
 
@@ -79,12 +87,12 @@ export class FeaturedSliderComponent implements OnInit, AfterViewChecked {
         }
     }
 
-    private getTransX(transform: string): number {
-        if(transform) {
+    private getTransX( transform: string ): number {
+        if (transform) {
             let transXRegex = /\.*translateX\((.*)px\)/i;
             let xTrans = transXRegex.exec(transform)[1];
             return +xTrans;
-        }else {
+        } else {
             return 0;
         }
     }
