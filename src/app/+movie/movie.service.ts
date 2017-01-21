@@ -120,6 +120,16 @@ export class MovieService extends BaseService {
         return this.getMovies(url, queries);
     }
 
+    /* Search for movies. */
+    searchMovies( searchTerm: string ): Observable<PaginatedResult<IMovie[]>> {
+        let url = 'https://api.themoviedb.org/3/search/movie';
+        let queries = [
+            {name: 'query', value: searchTerm},
+            {name: 'sort_by', value: 'popularity.desc'}
+        ];
+        return this.getMovies(url, queries);
+    }
+
     private getMovies( url: string, queries?: Array<{name: string, value: string}> ): Observable<PaginatedResult<IMovie[]>> {
         let search = new URLSearchParams();
         search.set('api_key', this.apikey);
