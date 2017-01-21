@@ -9,6 +9,7 @@ import { SharedModule } from "../shared";
 import { routes } from './tv.routes';
 import { TVCenterComponent } from "./tv-center.component";
 import { SeriesComponent } from "./series";
+import { TVService } from "./tv.service";
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { SeriesComponent } from "./series";
         RouterModule.forChild(routes),
     ],
     providers: [
+        TVService
     ]
 })
 export class TVModule {

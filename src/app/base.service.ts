@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
-import { PaginatedResult, IMovie } from "./model";
+import { PaginatedResult } from "./model";
 import { URLSearchParams, Response, Http } from "@angular/http";
 /**
  * base.service
@@ -9,11 +9,11 @@ export class BaseService {
 
     protected readonly apikey: string;
 
-    constructor(protected http: Http) {
+    constructor( protected http: Http ) {
         this.apikey = '0ea0b3ae1ad79cc9e6354410580840c3';
     }
 
-    protected getPaginatedResult<T>(url: string, queries?: Array<{name: string, value: string}>): Observable<PaginatedResult<T[]>> {
+    protected getPaginatedResult<T>( url: string, queries?: Array<{name: string, value: string}> ): Observable<PaginatedResult<T[]>> {
         let search = new URLSearchParams();
         search.set('api_key', this.apikey);
 
@@ -39,7 +39,7 @@ export class BaseService {
             });
     }
 
-    protected getResult<T>(url: string, queries?: Array<{name: string, value: string}>): Observable<T> {
+    protected getResult<T>( url: string, queries?: Array<{name: string, value: string}> ): Observable<T> {
         let search = new URLSearchParams();
         search.set('api_key', this.apikey);
 

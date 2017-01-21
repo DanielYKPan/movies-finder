@@ -12,7 +12,7 @@ import { BaseService } from "../base.service";
 @Injectable()
 export class MovieService extends BaseService {
 
-    constructor(protected http: Http ) {
+    constructor( protected http: Http ) {
         super(http);
     }
 
