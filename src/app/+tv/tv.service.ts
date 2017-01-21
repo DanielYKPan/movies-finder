@@ -52,7 +52,7 @@ export class TVService extends BaseService {
 
     /* Get the videos that have been added to a movie.  */
     getSeriesVideos( id: string ): Observable<IVideos> {
-        let url = 'https://api.themoviedb.org/3/movie/' + id + '/videos';
+        let url = 'https://api.themoviedb.org/3/tv/' + id + '/videos';
         return this.getResult<IVideos>(url);
     }
 

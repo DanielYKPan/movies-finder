@@ -122,3 +122,36 @@ img.thumbnail {
 .company-label {
   background-color: #d9534f;
 }
+
+.videos {
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto $base-line-height*2;
+
+  @include respond-to(large) {
+    width: 70%;
+  }
+}
+
+.video-name,
+.video-embed {
+  width: 100%;
+}
+
+.embed-responsive {
+  position: relative;
+
+  .embed-responsive-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    border: 0;
+  }
+}
+
+.embed-responsive-16by9 {
+  padding-bottom: (9/16)*100%;
+}
