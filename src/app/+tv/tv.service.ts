@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Http } from "@angular/http";
 import { BaseService } from "../base.service";
 import { Observable } from "rxjs";
-import { PaginatedResult, ISeries, IGenre } from "../model";
+import { PaginatedResult, ISeries, IGenre, ISeriesDetails } from "../model";
 
 @Injectable()
 export class TVService extends BaseService {
@@ -42,6 +42,12 @@ export class TVService extends BaseService {
     getGenres(): Observable<{genres: IGenre[]}> {
         let url = 'https://api.themoviedb.org/3/genre/tv/list';
         return this.getResult<{genres: IGenre[]}>(url);
+    }
+
+    /* Get Movie Details */
+    getSeriesDetails( id: string ): Observable<ISeriesDetails> {
+        let url = 'https://api.themoviedb.org/3/tv/' + id;
+        return this.getResult<ISeriesDetails>(url);
     }
 
     /* Search for series */

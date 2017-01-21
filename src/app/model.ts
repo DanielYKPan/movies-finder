@@ -181,6 +181,42 @@ export interface ISeries {
     original_name: string;
 }
 
+export interface ISeriesDetails {
+    backdrop_path: string;
+    created_by: Array<IActor>;
+    episode_run_time: Array<number>;
+    genres: Array<IGenre>;
+    homepage: string;
+    id: number;
+    in_production: boolean;
+    languages: Array<string>;
+    last_air_date: string;
+    name: string;
+    networks: Array<{id: number, name: string}>;
+    number_of_episodes: number;
+    number_of_seasons: number;
+    origin_country: Array<string>;
+    original_language: string;
+    original_name: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    production_companies: Array<{id: number, name: string}>;
+    seasons: Array<ISeriesSeason>;
+    status: string;
+    type: string;
+    vote_average: number;
+    vote_count: number;
+}
+
+export interface ISeriesSeason {
+    air_date: string;
+    episode_count: number;
+    id: number;
+    poster_path: string;
+    season_number: number
+}
+
 export interface ISpokenLanguage {
     iso_639_1: string;
     id: number;

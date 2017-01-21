@@ -5,7 +5,7 @@
 import { TVCenterComponent } from "./tv-center.component";
 import { SeriesComponent, SeriesResolver } from "./series";
 import { GenresComponent, GenreSeriesResolver } from "./genres";
-import { SeriesDetailsComponent } from "./series-details";
+import { SeriesDetailsComponent, SeriesDetailsResolver } from "./series-details";
 
 export const routes = [
     {
@@ -22,6 +22,9 @@ export const routes = [
             {
                 path: ':id',
                 component: SeriesDetailsComponent,
+                resolve: {
+                    res: SeriesDetailsResolver
+                }
             },
             {
                 path: 'genres/:id/:name',
