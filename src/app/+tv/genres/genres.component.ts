@@ -10,7 +10,7 @@ import 'rxjs/add/operator/switchMap';
 import { TVService } from "../tv.service";
 
 @Component({
-    selector: 'app-movie-genres',
+    selector: 'app-series-genres',
     templateUrl: './genres.component.html',
     styleUrls: ['./genres.component.scss']
 })

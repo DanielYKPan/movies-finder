@@ -11,12 +11,14 @@ import { TVCenterComponent } from "./tv-center.component";
 import { SeriesComponent, SeriesResolver } from "./series";
 import { TVService } from "./tv.service";
 import { GenresComponent, GenreSeriesResolver } from "./genres";
+import { SeriesDetailsComponent } from "./series-details";
 
 @NgModule({
     declarations: [
         // Components / Directives/ Pipes
         TVCenterComponent,
         SeriesComponent,
+        SeriesDetailsComponent,
         GenresComponent,
     ],
     imports: [
