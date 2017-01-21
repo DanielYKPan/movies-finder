@@ -1,0 +1,41 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/functions';
+@import '../../../styles/utils/mixins';
+
+.season-card {
+  width: 100%;
+  background-color: hsl(194, 19%, 40%);
+  padding: .2rem;
+}
+
+.season-card-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  position: relative;
+  padding: $base-line-height/2 .5rem $base-line-height*2;
+  color: $white;
+
+  a {
+    color: #df691a;
+
+    &:hover {
+      color: #f26e1b;
+    }
+  }
+
+  h4 {
+    @include type-setting(1);
+    margin: 0;
+  }
+
+  p {
+    @include type-setting(0);
+
+    position: relative;
+    margin: 0 0 $base-line-height/2;
+  }
+}

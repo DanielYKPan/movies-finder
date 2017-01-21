@@ -155,3 +155,26 @@ img.thumbnail {
 .embed-responsive-16by9 {
   padding-bottom: (9/16)*100%;
 }
+
+.series-seasons {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .season-row-heading {
+    width: 100%;
+  }
+
+  .season {
+    width: 50%;
+    padding: $base-line-height/2 .5rem;
+
+    @include respond-to(medium) {
+      width: 25%;
+    }
+
+    @include respond-to(large) {
+      width: 20%;
+    }
+  }
+}

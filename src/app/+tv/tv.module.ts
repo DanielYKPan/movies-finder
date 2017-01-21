@@ -12,6 +12,7 @@ import { SeriesComponent, SeriesResolver } from "./series";
 import { TVService } from "./tv.service";
 import { GenresComponent, GenreSeriesResolver } from "./genres";
 import { SeriesDetailsComponent, SeriesDetailsResolver } from "./series-details";
+import { SeasonCardComponent } from "./season-card";
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import { SeriesDetailsComponent, SeriesDetailsResolver } from "./series-details"
         SeriesComponent,
         SeriesDetailsComponent,
         GenresComponent,
+        SeasonCardComponent,
     ],
     imports: [
         SharedModule,

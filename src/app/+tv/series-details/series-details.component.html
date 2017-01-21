@@ -1,7 +1,7 @@
 <div class="row details" *ngIf="series">
     <div class="details-left-panel">
         <img class="thumbnail" src="https://image.tmdb.org/t/p/w500/{{series.poster_path}}">
-        <a class="btn btn-info homepage-btn" [href]="series.homepage">Visit Show Website</a>
+        <a class="btn btn-info homepage-btn" [href]="series.homepage" target="_blank">Visit Show Website</a>
     </div>
     <div class="details-right-panel">
         <h2 class="series-title">
@@ -31,5 +31,12 @@
     <h3 class="video-name">{{video.name}}</h3>
     <div class="embed-responsive embed-responsive-16by9 video-embed">
         <iframe class="embed-responsive-item" [src]="video.url"></iframe>
+    </div>
+</div>
+
+<div class="series-seasons" *ngIf="series && series.seasons && series.seasons.length > 0">
+    <h3 class="season-row-heading">Seasons</h3>
+    <div class="season" *ngFor="let season of series.seasons">
+        <app-season-card [season]="season"></app-season-card>
     </div>
 </div>
