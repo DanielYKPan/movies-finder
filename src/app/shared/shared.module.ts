@@ -9,12 +9,14 @@ import { RouterModule } from '@angular/router';
 import { MovieCardComponent } from "./movie-card";
 import { HttpModule } from "@angular/http";
 import { FeaturedSliderComponent } from "./featured-slider";
+import { SearchPanelComponent } from "./search-panel";
 
 @NgModule({
     declarations: [
         // Components / Directives/ Pipes
         MovieCardComponent,
         FeaturedSliderComponent,
+        SearchPanelComponent,
     ],
     imports: [
         CommonModule,
@@ -30,6 +32,7 @@ import { FeaturedSliderComponent } from "./featured-slider";
         FormsModule,
         MovieCardComponent,
         FeaturedSliderComponent,
+        SearchPanelComponent,
     ]
 })
 export class SharedModule {

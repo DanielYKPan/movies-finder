@@ -5,9 +5,23 @@
 .title {
   @include type-setting(2);
 
+  width: 100%;
   margin: 0;
   color: $white;
   padding: 0 .5rem;
+}
+
+.no-result {
+  @include type-setting(1);
+
+  width: 100%;
+  color: $white;
+  text-align: center;
+}
+
+.search-panel-row {
+  width: 100%;
+  margin-bottom: $base-line-height;
 }
 
 .movie-list {

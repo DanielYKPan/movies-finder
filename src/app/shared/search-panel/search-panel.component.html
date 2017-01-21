@@ -1,0 +1,14 @@
+<div class="search-panel">
+    <div class="panel-content">
+        <div class="panel-title">Search for favourite movies</div>
+        <div class="form-group">
+            <input class="form-control"
+                   type="text"
+                   placeholder="Search for movies..."
+                   #term (keyup)="search(term.value)">
+            <i *ngIf="term.value"
+               class="icon icon-cancel-circled"
+               (click)="term.value = null; search(term.value)"></i>
+        </div>
+    </div>
+</div>

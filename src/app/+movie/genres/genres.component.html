@@ -1,6 +1,18 @@
-<h2 class="title">{{title}}</h2>
-<div class="movie-list">
-    <div class="item" *ngFor="let movie of movies?.result">
+<div class="search-panel-row">
+    <app-search-panel (onSearchTermChange)="searchMovies($event)"></app-search-panel>
+</div>
+
+<div class="movie-list" *ngIf="movies && !searchResult">
+    <h2 class="title">{{title}}</h2>
+    <div class="item" *ngFor="let movie of movies.result">
+        <app-movie-card [movie]="movie"></app-movie-card>
+    </div>
+</div>
+
+<div class="movie-list" *ngIf="searchResult">
+    <h2 class="title">Search Result</h2>
+    <div class="no-result" *ngIf="searchResult.pagination.TotalItems == 0">No movies found ...</div>
+    <div class="item" *ngFor="let movie of searchResult.result">
         <app-movie-card [movie]="movie"></app-movie-card>
     </div>
 </div>
