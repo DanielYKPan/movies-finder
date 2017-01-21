@@ -3,7 +3,7 @@
  */
 
 import { TVCenterComponent } from "./tv-center.component";
-import { SeriesComponent } from "./series";
+import { SeriesComponent, SeriesResolver } from "./series";
 
 export const routes = [
     {
@@ -13,6 +13,9 @@ export const routes = [
             {
                 path: '',
                 component: SeriesComponent,
+                resolve: {
+                    res: SeriesResolver
+                }
             }
         ]
     },

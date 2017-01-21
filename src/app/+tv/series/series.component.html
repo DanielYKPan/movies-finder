@@ -1,1 +1,13 @@
-<div>Series Component</div>
+<div class="series-list" *ngIf="topRatedList">
+    <h2 class="title">Top Rated TV Series</h2>
+    <div class="item" *ngFor="let s of topRatedList.result">
+        <app-movie-card [movie]="s"></app-movie-card>
+    </div>
+</div>
+
+<div class="series-list" *ngIf="popularList">
+    <h2 class="title">Popular TV Series</h2>
+    <div class="item" *ngFor="let s of popularList.result">
+        <app-movie-card [movie]="s"></app-movie-card>
+    </div>
+</div>

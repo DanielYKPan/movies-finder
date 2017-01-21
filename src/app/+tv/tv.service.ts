@@ -24,7 +24,7 @@ export class TVService extends BaseService {
 
     /* Get top rated series */
     getTopRatedSeries(): Observable<PaginatedResult<ISeries[]>> {
-        let url = 'https://api.themoviedb.org/3/movie/top_rated';
+        let url = 'https://api.themoviedb.org/3/tv/top_rated';
         return this.getPaginatedResult<ISeries>(url);
     }
 
