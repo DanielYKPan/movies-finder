@@ -31,8 +31,12 @@ export class MovieService extends BaseService {
 
     /* Get Movies By Genre */
     getMoviesByGenre( id: string ): Observable<PaginatedResult<IMovie[]>> {
-        let url = 'https://api.themoviedb.org/3/genre/' + id + '/movies';
-        return this.getPaginatedResult<IMovie>(url);
+        let url = 'https://api.themoviedb.org/3/discover/movie';
+        let queries = [
+            {name: 'with_genres', value: id},
+            {name: 'sort_by', value: 'popularity.desc'}
+        ];
+        return this.getPaginatedResult<IMovie>(url, queries);
     }
 
     /* Get Movie Genres */

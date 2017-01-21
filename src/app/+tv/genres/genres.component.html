@@ -1,0 +1,18 @@
+<div class="search-panel-row">
+    <app-search-panel [type]="'TV Series'" (onSearchTermChange)="searchSeries($event)"></app-search-panel>
+</div>
+
+<div class="series-list" *ngIf="series && !searchResult">
+    <h2 class="title">{{title}}</h2>
+    <div class="item" *ngFor="let s of series.result">
+        <app-series-card [series]="s"></app-series-card>
+    </div>
+</div>
+
+<div class="series-list" *ngIf="searchResult">
+    <h2 class="title">Search Result</h2>
+    <div class="no-result" *ngIf="searchResult.pagination.TotalItems == 0">No movies found ...</div>
+    <div class="item" *ngFor="let s of searchResult.result">
+        <app-series-card [series]="s"></app-series-card>
+    </div>
+</div>

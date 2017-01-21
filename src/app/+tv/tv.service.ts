@@ -28,6 +28,16 @@ export class TVService extends BaseService {
         return this.getPaginatedResult<ISeries>(url);
     }
 
+    /* Get series by genre */
+    getSeriesByGenre( id: string ): Observable<PaginatedResult<ISeries[]>> {
+        let url = 'https://api.themoviedb.org/3/discover/tv';
+        let queries = [
+            {name: 'with_genres', value: id},
+            {name: 'sort_by', value: 'popularity.desc'}
+        ];
+        return this.getPaginatedResult<ISeries>(url, queries);
+    }
+
     /* Get Series genres */
     getGenres(): Observable<{genres: IGenre[]}> {
         let url = 'https://api.themoviedb.org/3/genre/tv/list';

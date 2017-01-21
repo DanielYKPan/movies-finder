@@ -10,12 +10,14 @@ import { routes } from './tv.routes';
 import { TVCenterComponent } from "./tv-center.component";
 import { SeriesComponent, SeriesResolver } from "./series";
 import { TVService } from "./tv.service";
+import { GenresComponent, GenreSeriesResolver } from "./genres";
 
 @NgModule({
     declarations: [
         // Components / Directives/ Pipes
         TVCenterComponent,
         SeriesComponent,
+        GenresComponent,
     ],
     imports: [
         SharedModule,
@@ -24,6 +26,7 @@ import { TVService } from "./tv.service";
     providers: [
         TVService,
         SeriesResolver,
+        GenreSeriesResolver,
     ]
 })
 export class TVModule {
