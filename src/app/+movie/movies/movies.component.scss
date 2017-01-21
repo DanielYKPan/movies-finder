@@ -10,6 +10,11 @@
   padding: 0 .5rem;
 }
 
+.search-panel-row {
+  width: 100%;
+  margin-bottom: $base-line-height;
+}
+
 .movie-list {
   display: flex;
   flex-wrap: wrap;
