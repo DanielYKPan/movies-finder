@@ -3,7 +3,7 @@
  */
 
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { IMovie, IVideo, PaginatedResult, IMovieVideos } from "../model";
+import { IMovie, IVideo, PaginatedResult, IVideos } from "../model";
 import { Subscription } from "rxjs";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.getMoviesSub = this.route.data.subscribe(
-            (data : {res: [PaginatedResult<IMovie[]>, PaginatedResult<IMovie[]>, IMovieVideos]}) => {
+            (data : {res: [PaginatedResult<IMovie[]>, PaginatedResult<IMovie[]>, IVideos]}) => {
                 this.moviesUpComing = data.res[0].result;
                 this.moviesNowPlaying = data.res[1].result;
                 this.featuredMovie = this.moviesNowPlaying.shift();

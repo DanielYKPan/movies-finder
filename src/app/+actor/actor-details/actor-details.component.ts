@@ -5,7 +5,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
 import { Subscription } from "rxjs";
-import { IActor, IActorCredits, IActorCast } from "../../model";
+import { IPerson, IActorCredits, IActorCast } from "../../model";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
 @Component({
@@ -16,7 +16,7 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
 export class ActorDetailsComponent implements OnInit, OnDestroy {
 
-    actor: IActor;
+    actor: IPerson;
     movies: Array<IActorCast>;
     private getActorSub: Subscription;
     private routerEventsSub: Subscription;
@@ -36,7 +36,7 @@ export class ActorDetailsComponent implements OnInit, OnDestroy {
             });
 
         this.getActorSub = this.route.data.subscribe(
-            ( data: {actor: [IActor, IActorCredits]} ) => {
+            ( data: {actor: [IPerson, IActorCredits]} ) => {
                 this.actor = data.actor[0];
                 this.movies = data.actor[1].cast;
                 this.actor.homepage_url = this.getHomepageUrl(this.actor.homepage);

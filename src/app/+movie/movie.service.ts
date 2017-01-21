@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Response } from "@angular/http";
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs";
-import { IGenre, PaginatedResult, IMovie, IMovieDetails, IMovieCredits, IMovieVideos, IReview } from "../model";
+import { IGenre, PaginatedResult, IMovie, IMovieDetails, IMovieCredits, IVideos, IReview } from "../model";
 import { BaseService } from "../base.service";
 
 @Injectable()
@@ -58,9 +58,9 @@ export class MovieService extends BaseService {
     }
 
     /* Get the videos that have been added to a movie.  */
-    getMovieVideos( id: string ): Observable<IMovieVideos> {
+    getMovieVideos( id: string ): Observable<IVideos> {
         let url = 'https://api.themoviedb.org/3/movie/' + id + '/videos';
-        return this.getResult<IMovieVideos>(url);
+        return this.getResult<IVideos>(url);
     }
 
     /* Get the user reviews for a movie. */

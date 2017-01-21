@@ -6,51 +6,29 @@ import { Injectable } from '@angular/core';
 import { BaseService } from "../base.service";
 import { Http, URLSearchParams, Response } from "@angular/http";
 import { Observable } from "rxjs";
-import { IActor, PaginatedResult, IActorCredits } from "../model";
+import { IPerson, PaginatedResult, IActorCredits } from "../model";
 
 @Injectable()
 export class ActorService extends BaseService {
 
-    constructor( private http: Http ) {
-        super();
+    constructor( protected http: Http ) {
+        super(http);
     }
 
-    getPopularActors(): Observable<PaginatedResult<IActor[]>> {
-        let search = new URLSearchParams();
-        search.set('api_key', this.apikey);
-        let paginatedResult: PaginatedResult<IActor[]> = new PaginatedResult<IActor[]>();
-        return this.http.get('https://api.themoviedb.org/3/person/popular', {search})
-            .map(( res: Response ) => {
-                let value = res.json();
-                paginatedResult.result = value.results;
-                paginatedResult.pagination = {
-                    CurrentPage: value.page,
-                    ItemsPerPage: paginatedResult.result.length,
-                    TotalItems: value.total_results,
-                    TotalPages: value.total_pages
-                };
-
-                return paginatedResult;
-            });
+    getPopularActors(): Observable<PaginatedResult<IPerson[]>> {
+        let url = 'https://api.themoviedb.org/3/person/popular';
+        return this.getPaginatedResult<IPerson>(url);
     }
 
     /* Get actor's details */
-    getActorDetails( id: string ): Observable<IActor> {
-        let search = new URLSearchParams();
-        search.set('api_key', this.apikey);
-        return this.http.get('https://api.themoviedb.org/3/person/' + id, {search})
-            .map(( res: Response ) => {
-                return res.json();
-            });
+    getActorDetails( id: string ): Observable<IPerson> {
+        let url = 'https://api.themoviedb.org/3/person/' + id;
+        return this.getResult<IPerson>(url);
     }
 
     /* Get the movie credits for a person */
     getActorMovieCredits( id: string ): Observable<IActorCredits> {
-        let search = new URLSearchParams();
-        search.set('api_key', this.apikey);
-        return this.http.get('https://api.themoviedb.org/3/person/' + id + '/movie_credits', {search})
-            .map(( res: Response ) => {
-                return res.json();
-            });
+        let url = 'https://api.themoviedb.org/3/person/' + id + '/movie_credits';
+        return this.getResult<IActorCredits>(url);
     }
 }

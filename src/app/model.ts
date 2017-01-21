@@ -3,7 +3,7 @@
  */
 import { SafeResourceUrl } from "@angular/platform-browser";
 
-export interface IActor {
+export interface IPerson {
     adult: boolean;
     also_known_as: Array<string>;
     biography: string;
@@ -131,10 +131,6 @@ export interface IMovieDetails {
     vote_count: number;
 }
 
-export interface IMovieVideos {
-    id: number;
-    results: Array<IVideo>
-}
 
 export interface IPagination {
     CurrentPage: number;
@@ -183,7 +179,7 @@ export interface ISeries {
 
 export interface ISeriesDetails {
     backdrop_path: string;
-    created_by: Array<IActor>;
+    created_by: Array<IPerson>;
     episode_run_time: Array<number>;
     genres: Array<IGenre>;
     homepage: string;
@@ -232,4 +228,9 @@ export interface IVideo {
     size: number;
     type: string;
     url: SafeResourceUrl;
+}
+
+export interface IVideos {
+    id: number;
+    results: Array<IVideo>
 }
