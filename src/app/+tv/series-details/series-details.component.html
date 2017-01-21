@@ -1,1 +1,28 @@
-<div>Series Details</div>
+<div class="row details" *ngIf="series">
+    <div class="details-left-panel">
+        <img class="thumbnail" src="https://image.tmdb.org/t/p/w500/{{series.poster_path}}">
+        <a class="btn btn-info homepage-btn" [href]="series.homepage">Visit Show Website</a>
+    </div>
+    <div class="details-right-panel">
+        <h2 class="series-title">
+            {{series.name}}
+        </h2>
+        <p>{{series.status}}</p>
+        <p><strong>Last Air Date: </strong>{{series.last_air_date}}</p>
+        <p><strong>Number Of Seasons: </strong>{{series.number_of_seasons}}</p>
+        <p><strong>Number Of Episodes: </strong>{{series.number_of_episodes}}</p>
+        <p>
+            <strong>Production Companies: </strong>
+            <span *ngFor="let company of series.production_companies" class="label company-label">
+            {{company.name}}
+            </span>
+        </p>
+        <p>
+            <a *ngFor="let genre of series.genres" [routerLink]="['../genres/', genre.id, genre.name]" class="label genre-label">
+                {{genre.name}}
+            </a>
+        </p>
+        <h3>Overview</h3>
+        <p>{{series.overview}}</p>
+    </div>
+</div>

@@ -44,7 +44,7 @@ export class TVService extends BaseService {
         return this.getResult<{genres: IGenre[]}>(url);
     }
 
-    /* Get Movie Details */
+    /* Get Series Details */
     getSeriesDetails( id: string ): Observable<ISeriesDetails> {
         let url = 'https://api.themoviedb.org/3/tv/' + id;
         return this.getResult<ISeriesDetails>(url);
