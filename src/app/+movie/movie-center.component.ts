@@ -2,9 +2,9 @@
  * movie-center.component
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MovieService } from "./movie.service";
-import { Observable } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { IGenre } from "../model";
 
 @Component({
@@ -12,14 +12,23 @@ import { IGenre } from "../model";
     styleUrls: ['./movie-center.component.scss'],
     templateUrl: 'movie-center.component.html'
 })
-export class MovieCenterComponent implements OnInit {
+export class MovieCenterComponent implements OnInit, OnDestroy {
 
-    genres$: Observable<IGenre[]>;
+    genres: IGenre[];
+    private getGenresSub: Subscription;
 
     constructor( private movieService: MovieService ) {
     }
 
     ngOnInit(): void {
-        this.genres$ = this.movieService.getGenres();
+        this.getGenresSub = this.movieService.getGenres().subscribe(
+            res => this.genres = res.genres
+        );
     }
+
+    ngOnDestroy(): void {
+        if(this.getGenresSub)
+            this.getGenresSub.unsubscribe();
+    }
+
 }
