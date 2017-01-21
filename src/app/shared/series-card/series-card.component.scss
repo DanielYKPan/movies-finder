@@ -1,0 +1,56 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/functions';
+@import '../../../styles/utils/mixins';
+
+.series-card {
+  width: 100%;
+  background-color: hsl(194, 19%, 40%);
+  padding: .2rem;
+}
+
+.series-card-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  position: relative;
+  padding: $base-line-height/2 .5rem $base-line-height*2;
+  color: $white;
+
+  a {
+    color: #df691a;
+  }
+
+  h4 {
+    @include type-setting(1);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+
+  p {
+    @include type-setting(0);
+
+    position: relative;
+    margin: 0 0 $base-line-height/2;
+  }
+
+  .vote {
+    @include type-setting(0);
+
+    @include respond-to(medium) {
+      @include type-setting(2);
+    }
+    position: absolute;
+    right: .5rem;
+    bottom: .5rem;
+    border-radius: .3rem;
+    background-color: #5cb85c;
+    padding: .1rem .4rem;
+  }
+
+}
