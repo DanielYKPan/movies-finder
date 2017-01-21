@@ -3,10 +3,10 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams, Response } from "@angular/http";
+import { Http } from "@angular/http";
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs";
-import { IGenre, PaginatedResult, IMovie, IMovieDetails, IMovieCredits, IVideos, IReview } from "../model";
+import { IGenre, PaginatedResult, IMovie, IMovieDetails, IVideos } from "../model";
 import { BaseService } from "../base.service";
 
 @Injectable()
@@ -20,13 +20,13 @@ export class MovieService extends BaseService {
     getPopular(): Observable<PaginatedResult<IMovie[]>> {
         let url = 'https://api.themoviedb.org/3/discover/movie';
         let queries = [{name: 'sort_by', value: 'popularity.desc'}];
-        return this.getPaginatedResult<IMovie>(url, queries);
+        return this.getResult<PaginatedResult<IMovie[]>>(url, queries);
     }
 
     /* Get Top Rated Movies */
     getTopRatedMovies(): Observable<PaginatedResult<IMovie[]>> {
         let url = 'https://api.themoviedb.org/3/movie/top_rated';
-        return this.getPaginatedResult<IMovie>(url);
+        return this.getResult<PaginatedResult<IMovie[]>>(url);
     }
 
     /* Get Movies By Genre */
@@ -36,7 +36,7 @@ export class MovieService extends BaseService {
             {name: 'with_genres', value: id},
             {name: 'sort_by', value: 'popularity.desc'}
         ];
-        return this.getPaginatedResult<IMovie>(url, queries);
+        return this.getResult<PaginatedResult<IMovie[]>>(url, queries);
     }
 
     /* Get Movie Genres */
@@ -48,13 +48,10 @@ export class MovieService extends BaseService {
     /* Get Movie Details */
     getMovie( id: string ): Observable<IMovieDetails> {
         let url = 'https://api.themoviedb.org/3/movie/' + id;
-        return this.getResult<IMovieDetails>(url);
-    }
-
-    /* Get Movie Credits including movie's casts and crew */
-    getMovieCredits( id: string ): Observable<IMovieCredits> {
-        let url = 'https://api.themoviedb.org/3/movie/' + id + '/credits';
-        return this.getResult<IMovieCredits>(url);
+        let queries = [
+            {name: 'append_to_response', value: 'credits,videos,reviews,similar'}
+        ];
+        return this.getResult<IMovieDetails>(url, queries);
     }
 
     /* Get the videos that have been added to a movie.  */
@@ -63,25 +60,13 @@ export class MovieService extends BaseService {
         return this.getResult<IVideos>(url);
     }
 
-    /* Get the user reviews for a movie. */
-    getMovieReviews( id: string ): Observable<PaginatedResult<IReview[]>> {
-        let url = 'https://api.themoviedb.org/3/movie/' + id + '/reviews';
-        return this.getPaginatedResult<IReview>(url);
-    }
-
-    /* Get a list of similar movies */
-    getSimilarMovies( id: string ): Observable<PaginatedResult<IMovie[]>> {
-        let url = 'https://api.themoviedb.org/3/movie/' + id + '/similar';
-        return this.getPaginatedResult<IMovie>(url);
-    }
-
     /* Get a list of upcoming movies in theatres. */
     getUpComingMovies(): Observable<PaginatedResult<IMovie[]>> {
         let url = 'https://api.themoviedb.org/3/movie/upcoming';
         let queries = [
             {name: 'region', value: 'US'},
         ];
-        return this.getPaginatedResult<IMovie>(url, queries);
+        return this.getResult<PaginatedResult<IMovie[]>>(url, queries);
     }
 
     /* Get a list of movies in theatres */
@@ -90,7 +75,7 @@ export class MovieService extends BaseService {
         let queries = [
             {name: 'region', value: 'US'},
         ];
-        return this.getPaginatedResult<IMovie>(url, queries);
+        return this.getResult<PaginatedResult<IMovie[]>>(url, queries);
     }
 
     /* Search for movies. */
@@ -100,7 +85,7 @@ export class MovieService extends BaseService {
             {name: 'query', value: searchTerm},
             {name: 'sort_by', value: 'popularity.desc'}
         ];
-        return this.getPaginatedResult<IMovie>(url, queries);
+        return this.getResult<PaginatedResult<IMovie[]>>(url, queries);
     }
 
 }

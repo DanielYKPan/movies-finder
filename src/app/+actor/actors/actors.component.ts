@@ -25,7 +25,7 @@ export class ActorsComponent implements OnInit, OnDestroy {
 
         this.getActorsSub = this.route.data.subscribe(
             ( data: {actors: PaginatedResult<IPerson[]>} ) => {
-                this.actors = data.actors.result;
+                this.actors = data.actors.results;
             }
         );
     }

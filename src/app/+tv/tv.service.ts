@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Http } from "@angular/http";
 import { BaseService } from "../base.service";
 import { Observable } from "rxjs";
-import { PaginatedResult, ISeries, IGenre, ISeriesDetails, IVideos } from "../model";
+import { PaginatedResult, ISeries, IGenre, ISeriesDetails } from "../model";
 
 @Injectable()
 export class TVService extends BaseService {
@@ -19,13 +19,13 @@ export class TVService extends BaseService {
     getPopular(): Observable<PaginatedResult<ISeries[]>> {
         let url = 'https://api.themoviedb.org/3/discover/tv';
         let queries = [{name: 'sort_by', value: 'popularity.desc'}];
-        return this.getPaginatedResult<ISeries>(url, queries);
+        return this.getResult<PaginatedResult<ISeries[]>>(url, queries);
     }
 
     /* Get top rated series */
     getTopRatedSeries(): Observable<PaginatedResult<ISeries[]>> {
         let url = 'https://api.themoviedb.org/3/tv/top_rated';
-        return this.getPaginatedResult<ISeries>(url);
+        return this.getResult<PaginatedResult<ISeries[]>>(url);
     }
 
     /* Get series by genre */
@@ -35,7 +35,7 @@ export class TVService extends BaseService {
             {name: 'with_genres', value: id},
             {name: 'sort_by', value: 'popularity.desc'}
         ];
-        return this.getPaginatedResult<ISeries>(url, queries);
+        return this.getResult<PaginatedResult<ISeries[]>>(url, queries);
     }
 
     /* Get Series genres */
@@ -47,13 +47,10 @@ export class TVService extends BaseService {
     /* Get Series Details */
     getSeriesDetails( id: string ): Observable<ISeriesDetails> {
         let url = 'https://api.themoviedb.org/3/tv/' + id;
-        return this.getResult<ISeriesDetails>(url);
-    }
-
-    /* Get the videos that have been added to a movie.  */
-    getSeriesVideos( id: string ): Observable<IVideos> {
-        let url = 'https://api.themoviedb.org/3/tv/' + id + '/videos';
-        return this.getResult<IVideos>(url);
+        let queries = [
+            {name: 'append_to_response', value: 'videos'}
+        ];
+        return this.getResult<ISeriesDetails>(url, queries);
     }
 
     /* Search for series */
@@ -63,6 +60,6 @@ export class TVService extends BaseService {
             {name: 'query', value: searchTerm},
             {name: 'sort_by', value: 'popularity.desc'}
         ];
-        return this.getPaginatedResult<ISeries>(url, queries);
+        return this.getResult<PaginatedResult<ISeries[]>>(url, queries);
     }
 }

@@ -14,6 +14,7 @@ export interface IPerson {
     homepage_url: SafeResourceUrl;
     id: number;
     imdb_id: string;
+    movie_credits: IActorCredits;
     name: string;
     place_of_birth: string;
     popularity: number;
@@ -108,6 +109,7 @@ export interface IMovieDetails {
     backdrop_path: string;
     belongs_to_collection: ICollection;
     budget: number;
+    credits: IMovieCredits;
     genres: Array<IGenre>;
     homepage: string;
     id: number;
@@ -121,27 +123,24 @@ export interface IMovieDetails {
     production_countries: Array<IProductionCountry>;
     release_date: string;
     revenue: number;
+    reviews: PaginatedResult<IReview[]>;
     runtime: number;
+    similar: PaginatedResult<IMovie[]>;
     spoken_languages: Array<ISpokenLanguage>;
     status: string;
     tagline: string;
     title: string;
     video: boolean;
+    videos: IVideos;
     vote_average: number;
     vote_count: number;
 }
 
-
-export interface IPagination {
-    CurrentPage: number;
-    ItemsPerPage: number;
-    TotalItems: number;
-    TotalPages: number;
-}
-
-export class PaginatedResult<T> {
-    result: T;
-    pagination: IPagination;
+export interface PaginatedResult<T> {
+    page: number;
+    results: T;
+    total_pages: number;
+    total_results: number;
 }
 
 export interface IProductionCompany {
@@ -201,6 +200,7 @@ export interface ISeriesDetails {
     seasons: Array<ISeriesSeason>;
     status: string;
     type: string;
+    videos: IVideos;
     vote_average: number;
     vote_count: number;
 }

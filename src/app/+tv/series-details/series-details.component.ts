@@ -4,7 +4,7 @@
 
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { ISeriesDetails, IVideos, IVideo } from "../../model";
+import { ISeriesDetails, IVideo } from "../../model";
 import { Subscription } from "rxjs";
 import { DomSanitizer } from "@angular/platform-browser";
 
@@ -36,10 +36,10 @@ export class SeriesDetailsComponent implements OnInit, OnDestroy {
             });
 
         this.getSeriesSub = this.route.data.subscribe(
-            ( data: {res: [ISeriesDetails, IVideos]} ) => {
-                this.series = data.res[0];
-                if(data.res[1].results && data.res[1].results.length > 0) {
-                    this.video = data.res[1].results[0];
+            ( data: {res: ISeriesDetails} ) => {
+                this.series = data.res;
+                if(this.series.videos.results && this.series.videos.results.length > 0) {
+                    this.video = this.series.videos.results[0];
                     this.video.url = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.video.key)
                 }
             }

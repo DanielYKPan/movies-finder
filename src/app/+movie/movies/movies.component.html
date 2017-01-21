@@ -4,22 +4,22 @@
 
 <div class="movie-list" *ngIf="topRatedList && !searchResult">
     <h2 class="title">Top Rated Movies</h2>
-    <div class="item" *ngFor="let movie of topRatedList.result">
+    <div class="item" *ngFor="let movie of topRatedList.results">
         <app-movie-card [movie]="movie"></app-movie-card>
     </div>
 </div>
 
 <div class="movie-list" *ngIf="popularList && !searchResult">
     <h2 class="title">Popular Movies</h2>
-    <div class="item" *ngFor="let movie of popularList.result">
+    <div class="item" *ngFor="let movie of popularList.results">
         <app-movie-card [movie]="movie"></app-movie-card>
     </div>
 </div>
 
 <div class="movie-list" *ngIf="searchResult">
     <h2 class="title">Search Result</h2>
-    <div class="no-result" *ngIf="searchResult.pagination.TotalItems == 0">No movies found ...</div>
-    <div class="item" *ngFor="let movie of searchResult.result">
+    <div class="no-result" *ngIf="searchResult.total_results == 0">No movies found ...</div>
+    <div class="item" *ngFor="let movie of searchResult.results">
         <app-movie-card [movie]="movie"></app-movie-card>
     </div>
 </div>

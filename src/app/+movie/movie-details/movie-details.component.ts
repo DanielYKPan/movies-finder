@@ -6,7 +6,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Subscription } from "rxjs";
-import { IMovieDetails, IMovieCast, IVideo, IMovie, IReview, IMovieCredits, IVideos, PaginatedResult } from "../../model";
+import { IMovieDetails, IMovieCast, IVideo, IMovie, IReview } from "../../model";
 import 'rxjs/add/observable/forkJoin';
 
 @Component({
@@ -40,15 +40,15 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
             });
 
         this.getMovieSub = this.route.data.subscribe(
-            ( data: {res: [IMovieDetails, IMovieCredits, IVideos, PaginatedResult<IMovie[]>, PaginatedResult<IReview[]>]} ) => {
-                this.movie = data.res[0];
-                this.cast = data.res[1].cast.filter(( item ) => item.profile_path).slice(0, 4);
-                if (data.res[2].results && data.res[2].results.length > 0) {
-                    this.video = data.res[2].results[0];
+            ( data: {res: IMovieDetails} ) => {
+                this.movie = data.res;
+                this.cast = this.movie.credits.cast.filter(( item ) => item.profile_path).slice(0, 4);
+                if (this.movie.videos.results && this.movie.videos.results.length > 0) {
+                    this.video = this.movie.videos.results[0];
                     this.video.url = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.video.key)
                 }
-                this.similarMovies = data.res[3].result;
-                this.movieReviews = data.res[4].result;
+                this.similarMovies = this.movie.similar.results;
+                this.movieReviews = this.movie.reviews.results;
             }
         );
     }

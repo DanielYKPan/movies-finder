@@ -4,9 +4,9 @@
 
 import { Injectable } from '@angular/core';
 import { BaseService } from "../base.service";
-import { Http, URLSearchParams, Response } from "@angular/http";
+import { Http } from "@angular/http";
 import { Observable } from "rxjs";
-import { IPerson, PaginatedResult, IActorCredits } from "../model";
+import { IPerson, PaginatedResult } from "../model";
 
 @Injectable()
 export class ActorService extends BaseService {
@@ -17,18 +17,15 @@ export class ActorService extends BaseService {
 
     getPopularActors(): Observable<PaginatedResult<IPerson[]>> {
         let url = 'https://api.themoviedb.org/3/person/popular';
-        return this.getPaginatedResult<IPerson>(url);
+        return this.getResult<PaginatedResult<IPerson[]>>(url);
     }
 
     /* Get actor's details */
     getActorDetails( id: string ): Observable<IPerson> {
         let url = 'https://api.themoviedb.org/3/person/' + id;
-        return this.getResult<IPerson>(url);
-    }
-
-    /* Get the movie credits for a person */
-    getActorMovieCredits( id: string ): Observable<IActorCredits> {
-        let url = 'https://api.themoviedb.org/3/person/' + id + '/movie_credits';
-        return this.getResult<IActorCredits>(url);
+        let queries = [
+            {name: 'append_to_response', value: 'movie_credits'}
+        ];
+        return this.getResult<IPerson>(url, queries);
     }
 }

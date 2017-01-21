@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.getMoviesSub = this.route.data.subscribe(
             (data : {res: [PaginatedResult<IMovie[]>, PaginatedResult<IMovie[]>, IVideos]}) => {
-                this.moviesUpComing = data.res[0].result;
-                this.moviesNowPlaying = data.res[1].result;
+                this.moviesUpComing = data.res[0].results;
+                this.moviesNowPlaying = data.res[1].results;
                 this.featuredMovie = this.moviesNowPlaying.shift();
                 if (data.res[2].results) {
                     this.featuredVideo = data.res[2].results[0];

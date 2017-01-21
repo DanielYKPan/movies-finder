@@ -19,7 +19,9 @@ export class HomeDataResolver implements Resolve<[PaginatedResult<IMovie[]>, Pag
         let moviesUpComing$ = this.ms.getUpComingMovies();
         let moviesNowPlaying$ = this.ms.getNowPlayingMovies();
         let featuredVideo$ = moviesNowPlaying$
-            .map(res => res.result[0].id)
+            .map(res => {
+                return res.results[0].id;
+            })
             .mergeMap(id => this.ms.getMovieVideos(id.toString()));
         return Observable.forkJoin([moviesUpComing$, moviesNowPlaying$, featuredVideo$]);
 
