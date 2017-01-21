@@ -18,8 +18,10 @@ export class SeriesComponent implements OnInit, OnDestroy {
 
     popularList: PaginatedResult<ISeries[]>;
     topRatedList: PaginatedResult<ISeries[]>;
+    searchResult: PaginatedResult<ISeries[]>;
 
     private getSeriesSub: Subscription;
+    private searchSeriesSub: Subscription;
 
     constructor( private route: ActivatedRoute,
                  private tvService: TVService ) {
@@ -37,5 +39,21 @@ export class SeriesComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         if (this.getSeriesSub)
             this.getSeriesSub.unsubscribe();
+
+        if (this.searchSeriesSub)
+            this.searchSeriesSub.unsubscribe();
+    }
+
+    searchSeries( searchTerm: string ): void {
+        if (!searchTerm) {
+            this.searchResult = null;
+            return;
+        }
+
+        this.searchSeriesSub = this.tvService.searchSeries(searchTerm).subscribe(
+            data => {
+                this.searchResult = data;
+            }
+        );
     }
 }

@@ -33,4 +33,14 @@ export class TVService extends BaseService {
         let url = 'https://api.themoviedb.org/3/genre/tv/list';
         return this.getResult<{genres: IGenre[]}>(url);
     }
+
+    /* Search for series */
+    searchSeries( searchTerm: string ): Observable<PaginatedResult<ISeries[]>> {
+        let url = 'https://api.themoviedb.org/3/search/tv';
+        let queries = [
+            {name: 'query', value: searchTerm},
+            {name: 'sort_by', value: 'popularity.desc'}
+        ];
+        return this.getPaginatedResult<ISeries>(url, queries);
+    }
 }

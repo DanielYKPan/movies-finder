@@ -1,13 +1,25 @@
-<div class="series-list" *ngIf="topRatedList">
+<div class="search-panel-row">
+    <app-search-panel [type]="'TV Series'" (onSearchTermChange)="searchSeries($event)"></app-search-panel>
+</div>
+
+<div class="series-list" *ngIf="topRatedList && !searchResult">
     <h2 class="title">Top Rated TV Series</h2>
     <div class="item" *ngFor="let s of topRatedList.result">
         <app-series-card [series]="s"></app-series-card>
     </div>
 </div>
 
-<div class="series-list" *ngIf="popularList">
+<div class="series-list" *ngIf="popularList && !searchResult">
     <h2 class="title">Popular TV Series</h2>
     <div class="item" *ngFor="let s of popularList.result">
+        <app-series-card [series]="s"></app-series-card>
+    </div>
+</div>
+
+<div class="series-list" *ngIf="searchResult">
+    <h2 class="title">Search Result</h2>
+    <div class="no-result" *ngIf="searchResult.pagination.TotalItems == 0">No tv show found ...</div>
+    <div class="item" *ngFor="let s of searchResult.result">
         <app-series-card [series]="s"></app-series-card>
     </div>
 </div>
