@@ -6,7 +6,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Subscription } from "rxjs";
-import { IMovieDetails, IMovieCast, IVideo, IMovie, IReview } from "../../model";
+import { IMovieDetails, ICast, IVideo, IMovie, IReview } from "../../model";
 import 'rxjs/add/observable/forkJoin';
 
 @Component({
@@ -18,7 +18,7 @@ import 'rxjs/add/observable/forkJoin';
 export class MovieDetailsComponent implements OnInit, OnDestroy {
 
     movie: IMovieDetails;
-    cast: Array<IMovieCast>;
+    cast: Array<ICast>;
     video: IVideo;
     similarMovies: Array<IMovie>;
     movieReviews: Array<IReview>;

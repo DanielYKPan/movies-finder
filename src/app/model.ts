@@ -79,7 +79,7 @@ export interface IMovie {
     vote_count: number;
 }
 
-export interface IMovieCast {
+export interface ICast {
     cast_id: number;
     character: string;
     credit_id: string;
@@ -89,7 +89,7 @@ export interface IMovieCast {
     profile_path: string;
 }
 
-export interface IMovieCrew {
+export interface ICrew {
     credit_id: string;
     department: string;
     id: number;
@@ -100,8 +100,8 @@ export interface IMovieCrew {
 
 export interface IMovieCredits {
     id: number;
-    cast: Array<IMovieCast>;
-    crew: Array<IMovieCrew>;
+    cast: Array<ICast>;
+    crew: Array<ICrew>;
 }
 
 export interface IMovieDetails {
@@ -211,6 +211,32 @@ export interface ISeriesSeason {
     id: number;
     poster_path: string;
     season_number: number
+}
+
+export interface ISeriesSeasonDetails {
+    air_date: string;
+    name: string;
+    episodes: Array<IEpisode>;
+    overview: string;
+    id: number;
+    poster_path: string;
+    season_number: number;
+    videos: IVideos;
+}
+
+export interface IEpisode {
+    air_date: string;
+    crew: Array<ICrew>;
+    episode_number: number;
+    guest_stars: Array<ICast>;
+    name: string;
+    overview: string;
+    id: number;
+    production_code: string;
+    season_number: number;
+    still_path: string;
+    vote_average: number;
+    vote_count: number;
 }
 
 export interface ISpokenLanguage {

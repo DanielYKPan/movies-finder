@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Http } from "@angular/http";
 import { BaseService } from "../base.service";
 import { Observable } from "rxjs";
-import { PaginatedResult, ISeries, IGenre, ISeriesDetails } from "../model";
+import { PaginatedResult, ISeries, IGenre, ISeriesDetails, ISeriesSeasonDetails } from "../model";
 
 @Injectable()
 export class TVService extends BaseService {
@@ -61,5 +61,14 @@ export class TVService extends BaseService {
             {name: 'sort_by', value: 'popularity.desc'}
         ];
         return this.getResult<PaginatedResult<ISeries[]>>(url, queries);
+    }
+
+    /* Get the TV season details by id */
+    getSeriesSeasonDetails(series_id: string, season_num: string): Observable<ISeriesSeasonDetails> {
+        let url = 'https://api.themoviedb.org/3/tv/' + series_id + '/season/' + season_num;
+        let queries = [
+            {name: 'append_to_response', value: 'videos'}
+        ];
+        return this.getResult<ISeriesSeasonDetails>(url, queries);
     }
 }
