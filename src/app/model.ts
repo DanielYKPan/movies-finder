@@ -14,7 +14,7 @@ export interface IPerson {
 
 export interface IPersonDetails {
     adult: boolean;
-    also_known_as: Array<any>;
+    also_known_as: Array<string>;
     biography: string;
     birthday: string;
     deathday: string;

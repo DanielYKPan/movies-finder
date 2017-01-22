@@ -3,7 +3,7 @@
 @import '../../../styles/utils/mixins';
 
 :host {
-  border: 0;
+  color: $text-color;
 }
 
 p {

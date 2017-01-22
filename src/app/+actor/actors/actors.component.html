@@ -1,6 +1,7 @@
 <h1>Popular Artists</h1>
 <div class="actor-list">
     <div class="actor-cell" *ngFor="let actor of actors">
-        <app-actor-card [actor]="actor"></app-actor-card>
+        <app-actor-card [actor]="actor"
+                        (click)="checkActorDetails(actor.id)"></app-actor-card>
     </div>
 </div>
