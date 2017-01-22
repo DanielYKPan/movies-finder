@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from "../base.service";
 import { Http } from "@angular/http";
 import { Observable } from "rxjs";
-import { IPerson, PaginatedResult } from "../model";
+import { IPersonDetails, PaginatedResult, IPerson } from "../model";
 
 @Injectable()
 export class ActorService extends BaseService {
@@ -21,11 +21,11 @@ export class ActorService extends BaseService {
     }
 
     /* Get actor's details */
-    getActorDetails( id: string ): Observable<IPerson> {
+    getActorDetails( id: string ): Observable<IPersonDetails> {
         let url = 'https://api.themoviedb.org/3/person/' + id;
         let queries = [
             {name: 'append_to_response', value: 'movie_credits'}
         ];
-        return this.getResult<IPerson>(url, queries);
+        return this.getResult<IPersonDetails>(url, queries);
     }
 }

@@ -4,8 +4,17 @@
 import { SafeResourceUrl } from "@angular/platform-browser";
 
 export interface IPerson {
+    profile_path: string;
     adult: boolean;
-    also_known_as: Array<string>;
+    id: number;
+    known_for: Array<Object>;
+    name: string;
+    popularity;
+}
+
+export interface IPersonDetails {
+    adult: boolean;
+    also_known_as: Array<any>;
     biography: string;
     birthday: string;
     deathday: string;
@@ -178,7 +187,7 @@ export interface ISeries {
 
 export interface ISeriesDetails {
     backdrop_path: string;
-    created_by: Array<IPerson>;
+    created_by: Array<IPersonDetails>;
     episode_run_time: Array<number>;
     genres: Array<IGenre>;
     homepage: string;
