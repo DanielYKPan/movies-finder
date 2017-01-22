@@ -2,16 +2,16 @@
     <app-search-panel (onSearchTermChange)="searchMovies($event)"></app-search-panel>
 </div>
 
-<div class="movie-list" *ngIf="topRatedList && !searchResult">
-    <h2 class="title">Top Rated Movies</h2>
-    <div class="item" *ngFor="let movie of topRatedList.results">
+<div class="movie-list" *ngIf="popularList && !searchResult">
+    <h2 class="title">Popular Movies</h2>
+    <div class="item" *ngFor="let movie of popularList.results">
         <app-movie-card [movie]="movie"></app-movie-card>
     </div>
 </div>
 
-<div class="movie-list" *ngIf="popularList && !searchResult">
-    <h2 class="title">Popular Movies</h2>
-    <div class="item" *ngFor="let movie of popularList.results">
+<div class="movie-list" *ngIf="topRatedList && !searchResult">
+    <h2 class="title">Top Rated Movies</h2>
+    <div class="item" *ngFor="let movie of topRatedList.results">
         <app-movie-card [movie]="movie"></app-movie-card>
     </div>
 </div>
