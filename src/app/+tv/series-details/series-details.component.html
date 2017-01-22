@@ -18,7 +18,8 @@
             </span>
         </p>
         <p>
-            <a *ngFor="let genre of series.genres" [routerLink]="['../genres/', genre.id, genre.name]" class="label genre-label">
+            <a *ngFor="let genre of series.genres" [routerLink]="['../genres/', genre.id, genre.name]"
+               class="label genre-label">
                 {{genre.name}}
             </a>
         </p>
@@ -36,7 +37,11 @@
 
 <div class="series-seasons" *ngIf="series && series.seasons && series.seasons.length > 0">
     <h3 class="season-row-heading">Seasons</h3>
-    <div class="season" *ngFor="let season of series.seasons">
+    <div class="season" *ngFor="let season of series.seasons" (click)="showSeasonDetails(season.season_number)">
         <app-season-card [season]="season"></app-season-card>
     </div>
 </div>
+
+<app-modal *ngIf="seasonDetailsModalOpen" (onOverlayClick)="toggleModal($event)">
+    <app-series-season [season]="season" [video]="seasonVideo"></app-series-season>
+</app-modal>

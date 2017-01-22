@@ -2,7 +2,8 @@
  * season-details.component
  */
 
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy, Input } from "@angular/core";
+import { IVideo, ISeriesSeasonDetails } from "../../model";
 
 @Component({
     selector: 'app-series-season',
@@ -10,10 +11,17 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ['./season-details.component.scss']
 })
 
-export class SeasonDetailsComponent implements OnInit {
+export class SeasonDetailsComponent implements OnInit, OnDestroy {
+
+    @Input() season: ISeriesSeasonDetails;
+    @Input() video: IVideo;
+
     constructor() {
     }
 
     ngOnInit(): void {
+    }
+
+    ngOnDestroy(): void {
     }
 }

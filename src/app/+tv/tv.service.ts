@@ -3,10 +3,10 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Http } from "@angular/http";
 import { BaseService } from "../base.service";
+import { Http } from "@angular/http";
 import { Observable } from "rxjs";
-import { PaginatedResult, ISeries, IGenre, ISeriesDetails, ISeriesSeasonDetails } from "../model";
+import { ISeries, PaginatedResult, IGenre, ISeriesDetails, ISeriesSeasonDetails } from "../model";
 
 @Injectable()
 export class TVService extends BaseService {
@@ -31,10 +31,7 @@ export class TVService extends BaseService {
     /* Get series by genre */
     getSeriesByGenre( id: string ): Observable<PaginatedResult<ISeries[]>> {
         let url = 'https://api.themoviedb.org/3/discover/tv';
-        let queries = [
-            {name: 'with_genres', value: id},
-            {name: 'sort_by', value: 'popularity.desc'}
-        ];
+        let queries = [{name: 'with_genres', value: id}, {name: 'sort_by', value: 'popularity.desc'}];
         return this.getResult<PaginatedResult<ISeries[]>>(url, queries);
     }
 
@@ -47,28 +44,21 @@ export class TVService extends BaseService {
     /* Get Series Details */
     getSeriesDetails( id: string ): Observable<ISeriesDetails> {
         let url = 'https://api.themoviedb.org/3/tv/' + id;
-        let queries = [
-            {name: 'append_to_response', value: 'videos'}
-        ];
+        let queries = [{name: 'append_to_response', value: 'videos'}];
         return this.getResult<ISeriesDetails>(url, queries);
     }
 
     /* Search for series */
     searchSeries( searchTerm: string ): Observable<PaginatedResult<ISeries[]>> {
         let url = 'https://api.themoviedb.org/3/search/tv';
-        let queries = [
-            {name: 'query', value: searchTerm},
-            {name: 'sort_by', value: 'popularity.desc'}
-        ];
+        let queries = [{name: 'query', value: searchTerm}, {name: 'sort_by', value: 'popularity.desc'}];
         return this.getResult<PaginatedResult<ISeries[]>>(url, queries);
     }
 
     /* Get the TV season details by id */
-    getSeriesSeasonDetails(series_id: string, season_num: string): Observable<ISeriesSeasonDetails> {
+    getSeriesSeasonDetails( series_id: number, season_num: number ): Observable<ISeriesSeasonDetails> {
         let url = 'https://api.themoviedb.org/3/tv/' + series_id + '/season/' + season_num;
-        let queries = [
-            {name: 'append_to_response', value: 'videos'}
-        ];
+        let queries = [{name: 'append_to_response', value: 'videos'}];
         return this.getResult<ISeriesSeasonDetails>(url, queries);
     }
 }

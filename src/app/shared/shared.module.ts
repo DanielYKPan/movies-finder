@@ -11,6 +11,7 @@ import { HttpModule } from "@angular/http";
 import { FeaturedSliderComponent } from "./featured-slider";
 import { SearchPanelComponent } from "./search-panel";
 import { SeriesCardComponent } from "./series-card";
+import { ModalComponent } from "./modal";
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { SeriesCardComponent } from "./series-card";
         SeriesCardComponent,
         FeaturedSliderComponent,
         SearchPanelComponent,
+        ModalComponent,
     ],
     imports: [
         CommonModule,
@@ -36,6 +38,7 @@ import { SeriesCardComponent } from "./series-card";
         SeriesCardComponent,
         FeaturedSliderComponent,
         SearchPanelComponent,
+        ModalComponent,
     ]
 })
 export class SharedModule {
