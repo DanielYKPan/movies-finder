@@ -1,0 +1,10 @@
+<div class="series-card">
+    <img *ngIf="series.poster_path" class="series-card-img" src="https://image.tmdb.org/t/p/w300/{{series.poster_path}}">
+    <img *ngIf="!series.poster_path" class="series-card-img" src="/assets/img/abstract-image.jpg">
+    <div class="caption">
+        <h4><a [routerLink]="['/series', series.id]">{{series.name}}</a></h4>
+        <p>First Air Date: {{series.first_air_date}}</p>
+        <p><a [routerLink]="['/series', series.id]">View details »</a></p>
+        <small *ngIf="series.vote_average" class="vote">{{series.vote_average}}<i class="icon icon-star"></i></small>
+    </div>
+</div>

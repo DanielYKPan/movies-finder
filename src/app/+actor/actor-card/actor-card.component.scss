@@ -1,0 +1,55 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/functions';
+@import '../../../styles/utils/mixins';
+
+:host {
+  color: $text-color;
+}
+
+p {
+  margin: 0;
+}
+
+.actor-card {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.thumbnail {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.meta {
+  @include type-setting(-1);
+  position: absolute;
+  width: 100%;
+  height: $base-line-height * 4;
+  bottom: 0;
+  background-color: #fff;
+  opacity: 0.80;
+  padding: $base-line-height/2 .5rem 0;
+
+  @include respond-to(medium) {
+    @include type-setting(0);
+  }
+
+  .name {
+    font-weight: 900;
+    margin-bottom: $base-line-height/2;
+  }
+
+  .sub {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

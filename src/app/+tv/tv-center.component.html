@@ -1,0 +1,17 @@
+<div class="tv-center">
+    <div class="left-panel">
+        <nav class="nav-genres">
+            <ul class="genre-list">
+                <li class="genre-cell"
+                    *ngFor="let genre of genres"
+                    [routerLink]="['./genres/', genre.id, genre.name]"
+                    routerLinkActive="active">
+                    {{genre.name}}
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-panel">
+        <router-outlet></router-outlet>
+    </div>
+</div>

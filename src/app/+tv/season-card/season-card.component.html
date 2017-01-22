@@ -1,0 +1,11 @@
+<div class="season-card">
+    <img *ngIf="season.poster_path" class="season-card-img"
+         src="https://image.tmdb.org/t/p/w300/{{season.poster_path}}">
+    <img *ngIf="!season.poster_path" class="season-card-img" src="/assets/img/abstract-image.jpg">
+    <div class="caption">
+        <h4><a>Season {{season.season_number}}</a></h4>
+        <p>({{season.episode_count}} Episodes)</p>
+        <p>Air Date: {{season.air_date}}</p>
+        <p><a>View details »</a></p>
+    </div>
+</div>

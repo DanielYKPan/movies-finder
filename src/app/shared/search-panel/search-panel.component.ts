@@ -2,7 +2,7 @@
  * search-panel.component
  */
 
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, OnDestroy, Input } from "@angular/core";
 import { Subject, Subscription } from "rxjs";
 
 @Component({
@@ -13,6 +13,7 @@ import { Subject, Subscription } from "rxjs";
 
 export class SearchPanelComponent implements OnInit, OnDestroy {
 
+    @Input() type: string = 'movies';
     @Output() onSearchTermChange = new EventEmitter<any>();
     private searchTermStream = new Subject<string>();
     private searchTermSub: Subscription;
@@ -28,7 +29,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        if(this.searchTermSub)
+        if (this.searchTermSub)
             this.searchTermSub.unsubscribe();
     }
 

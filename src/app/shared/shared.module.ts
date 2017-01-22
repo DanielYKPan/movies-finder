@@ -10,13 +10,17 @@ import { MovieCardComponent } from "./movie-card";
 import { HttpModule } from "@angular/http";
 import { FeaturedSliderComponent } from "./featured-slider";
 import { SearchPanelComponent } from "./search-panel";
+import { SeriesCardComponent } from "./series-card";
+import { ModalComponent } from "./modal";
 
 @NgModule({
     declarations: [
         // Components / Directives/ Pipes
         MovieCardComponent,
+        SeriesCardComponent,
         FeaturedSliderComponent,
         SearchPanelComponent,
+        ModalComponent,
     ],
     imports: [
         CommonModule,
@@ -31,8 +35,10 @@ import { SearchPanelComponent } from "./search-panel";
         RouterModule,
         FormsModule,
         MovieCardComponent,
+        SeriesCardComponent,
         FeaturedSliderComponent,
         SearchPanelComponent,
+        ModalComponent,
     ]
 })
 export class SharedModule {

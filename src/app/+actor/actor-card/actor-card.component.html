@@ -1,0 +1,14 @@
+<div class="actor-card">
+    <div class="thumbnail">
+        <img src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}">
+        <div class="meta" [@metaOnMouseState]="mouseState">
+            <p class="name">{{actor.name}}</p>
+            <p class="sub" [@subOnMouseState]="mouseState">
+                <span *ngFor="let film of actor.known_for; let last = last">
+                    <span *ngIf="film.media_type == 'movie'">{{film.title}}<span *ngIf="!last">,  </span></span>
+                    <span *ngIf="film.media_type == 'tv'">{{film.name}}<span *ngIf="!last">,  </span></span>
+                </span>
+            </p>
+        </div>
+    </div>
+</div>

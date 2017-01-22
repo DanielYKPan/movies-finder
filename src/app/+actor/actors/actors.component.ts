@@ -4,8 +4,8 @@
 
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs";
-import { IActor, PaginatedResult } from "../../model";
-import { ActivatedRoute } from "@angular/router";
+import { IPerson, PaginatedResult } from "../../model";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     selector: 'app-actor-list',
@@ -15,17 +15,18 @@ import { ActivatedRoute } from "@angular/router";
 
 export class ActorsComponent implements OnInit, OnDestroy {
 
-    actors: Array<IActor>;
+    actors: Array<IPerson>;
     private getActorsSub: Subscription;
 
-    constructor( private route: ActivatedRoute ) {
+    constructor( private route: ActivatedRoute,
+                 private router: Router, ) {
     }
 
     ngOnInit(): void {
 
         this.getActorsSub = this.route.data.subscribe(
-            ( data: {actors: PaginatedResult<IActor[]>} ) => {
-                this.actors = data.actors.result;
+            ( data: {actors: PaginatedResult<IPerson[]>} ) => {
+                this.actors = data.actors.results;
             }
         );
     }
@@ -33,5 +34,9 @@ export class ActorsComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         if (this.getActorsSub)
             this.getActorsSub.unsubscribe();
+    }
+
+    checkActorDetails( id: number ): void {
+        this.router.navigate(['/actors', id]);
     }
 }

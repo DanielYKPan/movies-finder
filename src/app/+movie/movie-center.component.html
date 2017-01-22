@@ -3,7 +3,7 @@
         <nav class="nav-genres">
             <ul class="genre-list">
                 <li class="genre-cell"
-                    *ngFor="let genre of genres$ | async"
+                    *ngFor="let genre of genres"
                     [routerLink]="['./genres/', genre.id, genre.name]"
                     routerLinkActive="active">
                     {{genre.name}}

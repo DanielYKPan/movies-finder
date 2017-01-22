@@ -1,0 +1,7 @@
+<section class="modal">
+    <section class="modal-overlay" (click)="closeModal()"></section>
+    <section class="modal-main">
+        <i class="icon icon-cancel-circled" (click)="closeModal()"></i>
+        <ng-content></ng-content>
+    </section>
+</section>

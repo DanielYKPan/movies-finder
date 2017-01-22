@@ -3,7 +3,16 @@
  */
 import { SafeResourceUrl } from "@angular/platform-browser";
 
-export interface IActor {
+export interface IPerson {
+    profile_path: string;
+    adult: boolean;
+    id: number;
+    known_for: Array<Object>;
+    name: string;
+    popularity;
+}
+
+export interface IPersonDetails {
     adult: boolean;
     also_known_as: Array<string>;
     biography: string;
@@ -14,6 +23,7 @@ export interface IActor {
     homepage_url: SafeResourceUrl;
     id: number;
     imdb_id: string;
+    movie_credits: IActorCredits;
     name: string;
     place_of_birth: string;
     popularity: number;
@@ -78,7 +88,7 @@ export interface IMovie {
     vote_count: number;
 }
 
-export interface IMovieCast {
+export interface ICast {
     cast_id: number;
     character: string;
     credit_id: string;
@@ -88,7 +98,7 @@ export interface IMovieCast {
     profile_path: string;
 }
 
-export interface IMovieCrew {
+export interface ICrew {
     credit_id: string;
     department: string;
     id: number;
@@ -99,8 +109,8 @@ export interface IMovieCrew {
 
 export interface IMovieCredits {
     id: number;
-    cast: Array<IMovieCast>;
-    crew: Array<IMovieCrew>;
+    cast: Array<ICast>;
+    crew: Array<ICrew>;
 }
 
 export interface IMovieDetails {
@@ -108,6 +118,7 @@ export interface IMovieDetails {
     backdrop_path: string;
     belongs_to_collection: ICollection;
     budget: number;
+    credits: IMovieCredits;
     genres: Array<IGenre>;
     homepage: string;
     id: number;
@@ -121,31 +132,24 @@ export interface IMovieDetails {
     production_countries: Array<IProductionCountry>;
     release_date: string;
     revenue: number;
+    reviews: PaginatedResult<IReview[]>;
     runtime: number;
+    similar: PaginatedResult<IMovie[]>;
     spoken_languages: Array<ISpokenLanguage>;
     status: string;
     tagline: string;
     title: string;
     video: boolean;
+    videos: IVideos;
     vote_average: number;
     vote_count: number;
 }
 
-export interface IMovieVideos {
-    id: number;
-    results: Array<IVideo>
-}
-
-export interface IPagination {
-    CurrentPage: number;
-    ItemsPerPage: number;
-    TotalItems: number;
-    TotalPages: number;
-}
-
-export class PaginatedResult<T> {
-    result: T;
-    pagination: IPagination;
+export interface PaginatedResult<T> {
+    page: number;
+    results: T;
+    total_pages: number;
+    total_results: number;
 }
 
 export interface IProductionCompany {
@@ -165,6 +169,85 @@ export interface IReview {
     url: string;
 }
 
+export interface ISeries {
+    poster_path: string;
+    popularity: number;
+    id: number;
+    backdrop_path: string;
+    vote_average: number;
+    overview: string;
+    first_air_date: string;
+    origin_country: Array<string>;
+    genre_ids: Array<number>;
+    original_language: string;
+    vote_count: number;
+    name: string;
+    original_name: string;
+}
+
+export interface ISeriesDetails {
+    backdrop_path: string;
+    created_by: Array<IPersonDetails>;
+    episode_run_time: Array<number>;
+    genres: Array<IGenre>;
+    homepage: string;
+    id: number;
+    in_production: boolean;
+    languages: Array<string>;
+    last_air_date: string;
+    name: string;
+    networks: Array<{id: number, name: string}>;
+    number_of_episodes: number;
+    number_of_seasons: number;
+    origin_country: Array<string>;
+    original_language: string;
+    original_name: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    production_companies: Array<{id: number, name: string}>;
+    seasons: Array<ISeriesSeason>;
+    status: string;
+    type: string;
+    videos: IVideos;
+    vote_average: number;
+    vote_count: number;
+}
+
+export interface ISeriesSeason {
+    air_date: string;
+    episode_count: number;
+    id: number;
+    poster_path: string;
+    season_number: number
+}
+
+export interface ISeriesSeasonDetails {
+    air_date: string;
+    name: string;
+    episodes: Array<IEpisode>;
+    overview: string;
+    id: number;
+    poster_path: string;
+    season_number: number;
+    videos: IVideos;
+}
+
+export interface IEpisode {
+    air_date: string;
+    crew: Array<ICrew>;
+    episode_number: number;
+    guest_stars: Array<ICast>;
+    name: string;
+    overview: string;
+    id: number;
+    production_code: string;
+    season_number: number;
+    still_path: string;
+    vote_average: number;
+    vote_count: number;
+}
+
 export interface ISpokenLanguage {
     iso_639_1: string;
     id: number;
@@ -180,4 +263,9 @@ export interface IVideo {
     size: number;
     type: string;
     url: SafeResourceUrl;
+}
+
+export interface IVideos {
+    id: number;
+    results: Array<IVideo>
 }

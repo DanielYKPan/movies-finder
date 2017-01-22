@@ -1,0 +1,124 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/functions';
+@import '../../../styles/utils/mixins';
+
+:host {
+  color: $white;
+}
+
+p {
+  position: relative;
+  margin: 0 0 $base-line-height/2;
+}
+
+h2 {
+  @include type-setting(3);
+  margin: 0;
+}
+
+h3 {
+  @include type-setting(2);
+  margin: 0;
+}
+
+h4 {
+  @include type-setting(1);
+  margin: 0;
+}
+
+.row {
+  margin-bottom: $base-line-height*2;
+
+  @include respond-to(medium) {
+    padding: 0 .5rem;
+  }
+}
+
+.season-details {
+  width: 80vw;
+  height: 80vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: $base-line-height .5rem;
+  background-color: $brand-color;
+  border-radius: 6px;
+}
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.details-left-panel {
+  width: 100%;
+
+  @include respond-to(large) {
+    width: 35%;
+    padding: 0 .5rem;
+  }
+}
+
+.details-right-panel {
+  width: 100%;
+
+  @include respond-to(large) {
+    width: 65%;
+    padding: 0 .5rem;
+  }
+}
+
+.thumbnail {
+  background-color: hsl(194, 19%, 40%);
+  margin-bottom: $base-line-height;
+  padding: .2rem;
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+img.thumbnail {
+  height: auto;
+}
+
+.season-name {
+  margin: $base-line-height 0;
+}
+
+.video-name {
+  width: 100%;
+}
+
+.video {
+  width: 100%;
+
+  @include respond-to(large) {
+    width: 70%;
+  }
+}
+
+.embed-responsive {
+  position: relative;
+
+  .embed-responsive-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    border: 0;
+  }
+}
+
+.embed-responsive-16by9 {
+  padding-bottom: (9/16)*100%;
+}
+
+.episode {
+  border-left: .5rem solid #4e5d6c;
+  margin: $base-line-height 0;
+  padding: 0 .5rem;
+}

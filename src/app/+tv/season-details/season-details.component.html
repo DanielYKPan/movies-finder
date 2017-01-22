@@ -1,0 +1,27 @@
+<div class="season-details">
+    <div class="row details">
+        <div class="details-left-panel">
+            <img class="thumbnail" src="https://image.tmdb.org/t/p/w500/{{season.poster_path}}">
+        </div>
+        <div class="details-right-panel">
+            <h2 class="season-name">{{season.name}}</h2>
+            <p><strong>Air Date: </strong>{{season.air_date}}</p>
+            <p><strong>Number Of Episodes: </strong>{{season.episodes.length}}</p>
+            <h3 *ngIf="season.overview">Overview</h3>
+            <p *ngIf="season.overview">{{season.overview}}</p>
+            <h3 *ngIf="video" class="video-name">{{video.name}}</h3>
+            <div *ngIf="video" class="video">
+                <div class="video-embed embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" [src]="video.url"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row episodes">
+        <div class="episode" *ngFor="let episode of season.episodes">
+            <h4>Episodes {{episode.episode_number}}: {{episode.name}}</h4>
+            <small>Air Date: {{episode.air_date}}</small>
+            <p>{{episode.overview}}</p>
+        </div>
+    </div>
+</div>

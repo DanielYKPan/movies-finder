@@ -11,6 +11,7 @@ export const ROUTES: Routes = [
         }
     },
     {path: 'movies', loadChildren: './+movie#MovieModule'},
+    {path: 'series', loadChildren: './+tv#TVModule'},
     {path: 'actors', loadChildren: './+actor#ActorModule'},
     {path: '**', component: NoContentComponent},
 ];

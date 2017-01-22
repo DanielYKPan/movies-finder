@@ -4,15 +4,15 @@
 
 <div class="movie-list" *ngIf="movies && !searchResult">
     <h2 class="title">{{title}}</h2>
-    <div class="item" *ngFor="let movie of movies.result">
+    <div class="item" *ngFor="let movie of movies.results">
         <app-movie-card [movie]="movie"></app-movie-card>
     </div>
 </div>
 
 <div class="movie-list" *ngIf="searchResult">
     <h2 class="title">Search Result</h2>
-    <div class="no-result" *ngIf="searchResult.pagination.TotalItems == 0">No movies found ...</div>
-    <div class="item" *ngFor="let movie of searchResult.result">
+    <div class="no-result" *ngIf="searchResult.total_results == 0">No movies found ...</div>
+    <div class="item" *ngFor="let movie of searchResult.results">
         <app-movie-card [movie]="movie"></app-movie-card>
     </div>
 </div>

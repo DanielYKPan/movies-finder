@@ -1,0 +1,180 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/functions';
+@import '../../../styles/utils/mixins';
+
+:host {
+  color: $white;
+}
+
+p {
+  position: relative;
+  margin: 0 0 $base-line-height/2;
+}
+
+h2 {
+  @include type-setting(3);
+  margin: 0;
+}
+
+h3 {
+  @include type-setting(2);
+  margin: 0;
+}
+
+.row {
+  margin-bottom: $base-line-height*2;
+
+  @include respond-to(medium) {
+    padding: 0 .5rem;
+  }
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  user-select: none;
+}
+
+.btn-info {
+  color: $white;
+  background-color: #5bc0de;
+
+  &:hover {
+    background-color: #31b0d5;
+  }
+}
+
+.homepage-btn {
+  @include type-setting(1);
+}
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.details-left-panel {
+  width: 100%;
+
+  @include respond-to(medium) {
+    width: 35%;
+    padding: 0 .5rem;
+  }
+}
+
+.details-right-panel {
+  width: 100%;
+
+  @include respond-to(medium) {
+    width: 65%;
+    padding: 0 .5rem;
+  }
+}
+
+.thumbnail {
+  background-color: hsl(194, 19%, 40%);
+  margin-bottom: $base-line-height;
+  padding: .2rem;
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+img.thumbnail {
+  height: auto;
+}
+
+.series-title {
+  margin: $base-line-height 0;
+}
+
+.label {
+  border-radius: .3rem;
+  padding: .1rem .4rem;
+  color: $white;
+}
+
+.genre-label,
+.company-label {
+  @include type-setting(-1);
+  border-radius: .2rem;
+  margin-right: .5rem;
+}
+
+.genre-label {
+  background-color: #5bc0de;
+  &:hover {
+    background-color: #31b0d5;
+  }
+}
+
+.company-label {
+  background-color: #d9534f;
+}
+
+.videos {
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto $base-line-height*2;
+
+  @include respond-to(large) {
+    width: 70%;
+  }
+}
+
+.video-name,
+.video-embed {
+  width: 100%;
+}
+
+.embed-responsive {
+  position: relative;
+
+  .embed-responsive-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    border: 0;
+  }
+}
+
+.embed-responsive-16by9 {
+  padding-bottom: (9/16)*100%;
+}
+
+.series-seasons {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .season-row-heading {
+    width: 100%;
+  }
+
+  .season {
+    width: 50%;
+    padding: $base-line-height/2 .5rem;
+
+    @include respond-to(medium) {
+      width: 25%;
+    }
+
+    @include respond-to(large) {
+      width: 20%;
+    }
+  }
+}

@@ -69,7 +69,6 @@ export class GenresComponent implements OnInit, OnDestroy {
         this.searchMoviesSub = this.movieService.searchMovies(searchTerm).subscribe(
             data => {
                 this.searchResult = data;
-                console.log(data);
             }
         );
     }

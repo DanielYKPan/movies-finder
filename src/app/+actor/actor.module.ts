@@ -10,6 +10,7 @@ import { ActorCenterComponent } from "./actor-center.component";
 import { ActorDetailsComponent, ActorDetailsResolver } from "./actor-details";
 import { ActorService } from "./actor.service";
 import { ActorsComponent, ActorsResolver } from "./actors";
+import { ActorCardComponent } from "./actor-card/actor-card.component";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ActorsComponent, ActorsResolver } from "./actors";
         ActorCenterComponent,
         ActorsComponent,
         ActorDetailsComponent,
+        ActorCardComponent,
     ],
     imports: [
         SharedModule,

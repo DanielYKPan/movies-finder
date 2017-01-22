@@ -1,0 +1,40 @@
+@import '../../../styles/utils/variables';
+@import '../../../styles/utils/functions';
+@import '../../../styles/utils/mixins';
+
+.title {
+  @include type-setting(2);
+
+  width: 100%;
+  margin: 0;
+  color: $white;
+  padding: 0 .5rem;
+}
+
+.no-result {
+  @include type-setting(1);
+
+  width: 100%;
+  color: $white;
+  text-align: center;
+}
+
+.search-panel-row {
+  width: 100%;
+  margin-bottom: $base-line-height;
+}
+
+.series-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: $base-line-height;
+}
+
+.item {
+  width: 50%;
+  padding: .5rem;
+
+  @include respond-to(large) {
+    width: 25%;
+  }
+}
