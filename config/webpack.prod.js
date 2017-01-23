@@ -112,6 +112,25 @@ module.exports = function (env) {
                     include: [helpers.root('src', 'styles')]
                 },
 
+                {
+                    test: /\.html$/,
+                    use: ['html-loader'],
+                    exclude: [helpers.root('src', 'index.html')]
+                },
+
+
+                {
+                    test: /\.(jpg|png|gif)$/,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                            query: {
+                                name: '/assets/img/[name].[ext]'
+                            }
+                        }
+                    ]
+                },
+
             ]
 
         },

@@ -166,18 +166,18 @@ module.exports = function (options) {
                  *
                  * See: https://github.com/webpack/raw-loader
                  */
-                {
+                /*{
                     test: /\.html$/,
                     use: 'raw-loader',
                     exclude: [helpers.root('src/index.html')]
-                },
+                },*/
 
                 /* File loader for supporting images, for example, in CSS files.
                  */
-                {
+                /*{
                     test: /\.(jpg|png|gif)$/,
                     use: 'file-loader'
-                },
+                },*/
 
             ],
 
